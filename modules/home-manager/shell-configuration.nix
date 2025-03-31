@@ -11,7 +11,13 @@
       ignoreAllDups = true;
     };
     syntaxHighlighting.enable = true;
-    autosuggestion.enable = true;
+    autosuggestion = {
+      enable = true;
+      strategy = [
+        "history"
+        "completion"
+      ];
+    };
     shellAliases = {
       ls = "eza";
     };
