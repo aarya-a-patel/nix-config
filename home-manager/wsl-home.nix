@@ -12,6 +12,7 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     outputs.homeManagerModules.shell
+    outputs.homeManagerModules.nvim
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -51,16 +52,7 @@
   };
 
   # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
   home.packages = with pkgs; [
-    tectonic
-    zathura
-    lua-language-server
-    rust-analyzer
-    nixd
-    tree-sitter
-    clang-tools
-    texlab
     sshfs
   ];
 
