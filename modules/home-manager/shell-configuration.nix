@@ -17,8 +17,15 @@
     };
   };
 
+  programs.bash = {
+    enable = true;
+  };
+
+  programs.nh.enable = true;
+
   programs.atuin = {
     enable = true;
+    enableBashIntegration = true;
     enableZshIntegration = true;
   };
 
@@ -29,6 +36,8 @@
   programs.git = {
     enable = true;
     delta.enable = true;
+    userEmail = "aarya.patel@gmail.com";
+    userName = "Aarya Patel";
   };
 
   programs.eza = {
@@ -37,17 +46,20 @@
     colors = "auto";
     icons = "auto";
     enableZshIntegration = true;
+    enableBashIntegration = true;
   };
 
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
+    enableBashIntegration = true;
   };
 
   programs.starship = {
     enable = true;
     enableTransience = true;
     enableZshIntegration = true;
+    enableBashIntegration = true;
   };
 
   home.packages = with pkgs; [
