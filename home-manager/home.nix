@@ -71,18 +71,11 @@
     vscode
     zed-editor
     # code-cursor
-    tectonic
-    zathura
     qgroundcontrol
     # libreoffice-fresh
-    lua-language-server
-    rust-analyzer
-    nixd
     # mailspring
     thunderbird
-    tree-sitter
     # nodejs_22
-    clang-tools
     clickup
     texlab
     (prismlauncher.override {
