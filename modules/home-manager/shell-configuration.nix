@@ -73,5 +73,10 @@
     ripgrep
     ncdu
     rmlint
+    unzip
+    autossh
+    nix-output-monitor
+    nix-fast-build
+    nix-tree
   ];
 }
