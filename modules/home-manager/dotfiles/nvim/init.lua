@@ -52,6 +52,9 @@ vim.opt.showmode = false
 vim.cmd.filetype('on')
 vim.cmd.syntax('on')
 
+-- conceal
+vim.opt.conceallevel = 2
+
 -- Set background to be clear
 vim.cmd([[autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE]])
 
