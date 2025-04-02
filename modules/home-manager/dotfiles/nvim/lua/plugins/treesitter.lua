@@ -5,9 +5,9 @@ return {
     config = function()
       require'nvim-treesitter.configs'.setup {
         ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "rust" },
+        ignore_install = { "latex" },
         sync_install = false,
         auto_install = true,
-        disable = { "latex" },
         highlight = { enable = true },
         indent = { enable = true },
       }
