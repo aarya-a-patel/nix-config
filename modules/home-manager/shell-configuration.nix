@@ -1,6 +1,11 @@
 { pkgs, config, ... }:
 
 {
+  home.shellAliases = {
+    ls = "eza";
+    cd = "z";
+  };
+
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -17,9 +22,6 @@
         "history"
         "completion"
       ];
-    };
-    shellAliases = {
-      ls = "eza";
     };
   };
 
