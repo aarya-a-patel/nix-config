@@ -16,6 +16,7 @@
       ignoreAllDups = true;
     };
     syntaxHighlighting.enable = true;
+    defaultKeymap = "viins";
     autosuggestion = {
       enable = true;
       strategy = [
