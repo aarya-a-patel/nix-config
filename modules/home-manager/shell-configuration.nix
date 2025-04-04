@@ -47,10 +47,6 @@
     delta.enable = true;
     userEmail = "aarya.patel@gmail.com";
     userName = "Aarya Patel";
-    extraConfig = {
-      gpg.format = "ssh";
-      user.signingkey = "~/.ssh/id_ed25519.pub";
-    };
   };
 
   programs.eza = {
