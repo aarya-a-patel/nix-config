@@ -90,9 +90,9 @@
     papirus-icon-theme
     sshfs
     mission-planner
-  ]) ++ (with inputs; [
-    zen-browser.packages.x86_64-linux.specific # This is bad
-  ]);
+  ]) ++ [
+    inputs.zen-browser.packages.x86_64-linux.default
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
