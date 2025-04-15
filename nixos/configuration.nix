@@ -239,11 +239,11 @@
   # services.xserver.libinput.enable = true;
 
   # Enable Docker.
-  virtualisation.docker.enable = true;
-  virtualisation.docker.daemon.settings = {
-    data-root = "/docker-data";
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;  # Enables Docker-compatible socket at /var/run/docker.sock
+    # defaultNetwork.settings.dns_enabled = true;  # Optional but useful for networking
   };
-  virtualisation.docker.liveRestore = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
