@@ -260,10 +260,14 @@
     (hiPrio uutils-coreutils-noprefix)
   ];
 
+  # memory things
   swapDevices = [ {
     device = "/var/lib/swapfile";
     size = 16*1024;
+    priority = 1;
   } ];
+  services.earlyoom.enable = true;
+  zramSwap.enable = true;
 
   virtualisation = {
     libvirtd = {
