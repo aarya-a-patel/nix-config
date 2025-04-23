@@ -66,6 +66,7 @@
   # programs.neovim.enable = true;
   home.packages = (with pkgs; [
     google-chrome
+    vlc
     slack
     vesktop
     vscode
