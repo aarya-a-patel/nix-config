@@ -85,7 +85,6 @@
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          inputs.determinate.nixosModules.default
           ./cachix.nix
           {
             nix.settings = {
@@ -108,6 +107,7 @@
               extraSpecialArgs = {inherit inputs outputs;};
             };
           }
+          inputs.determinate.nixosModules.default
         ];
       };
     };
