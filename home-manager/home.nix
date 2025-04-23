@@ -87,7 +87,7 @@
       ];
     })
     ghidra
-    input-leap
+    # input-leap # broken right now
     papirus-icon-theme
     sshfs
     mission-planner
