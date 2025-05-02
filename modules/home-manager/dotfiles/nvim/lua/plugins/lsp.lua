@@ -16,6 +16,7 @@ return {
       lspconfig.nixd.setup({ capabilities = capabilities })
       lspconfig.clangd.setup({ capabilities = capabilities })
       lspconfig.texlab.setup({ capabilities = capabilities })
+      lspconfig.bacon_ls.setup({ capabilities = capabilities })
     end,
     dependencies = {
       'neovim/nvim-lspconfig',

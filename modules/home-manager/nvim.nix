@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   programs.neovim = {
@@ -14,10 +14,12 @@
       clang-tools
       texlab
       clang
+      inputs.bacon-ls.defaultPackage.${pkgs.system}
     ];
   };
 
   home.packages = with pkgs; [
+    bacon
     # LaTeX Deps
     tectonic
   ];

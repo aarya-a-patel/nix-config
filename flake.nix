@@ -38,6 +38,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bacon-ls.url = "github:crisidev/bacon-ls";
+    bacon-ls.inputs.nixpkgs.follows = "nixpkgs";
+
     # Determinate Nix
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
   };
