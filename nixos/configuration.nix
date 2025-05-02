@@ -216,6 +216,10 @@
   '';
   */
 
+  # enable hibernation?
+  security.protectKernelImage = false;
+  boot.resumeDevice = "/dev/nvme0n1p7";
+
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
