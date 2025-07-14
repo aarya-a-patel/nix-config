@@ -15,6 +15,7 @@
     outputs.nixosModules.bluetooth
     outputs.nixosModules.dm
     outputs.nixosModules.kde
+    outputs.nixosModules.cosmic
     outputs.nixosModules.shell
     outputs.nixosModules.neovim
 

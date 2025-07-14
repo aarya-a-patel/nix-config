@@ -13,25 +13,11 @@
     home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.1";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Cosmic
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
-    # Fix wezterm
-    /*
-    wezterm = {
-      url = "github:wez/wezterm?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    */
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -49,7 +35,6 @@
     self,
     nixpkgs,
     home-manager,
-    nixos-cosmic,
     plasma-manager,
     ...
   } @ inputs: let
@@ -89,13 +74,6 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./cachix.nix
-          {
-            nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-            };
-          }
-          nixos-cosmic.nixosModules.default
           # > Our main nixos configuration file <
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
