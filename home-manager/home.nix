@@ -71,13 +71,12 @@
     vesktop
     vscode
     zed-editor
+    kitty
     # code-cursor
-    qgroundcontrol
     # libreoffice-fresh
     # mailspring
     thunderbird
     # nodejs_22
-    clickup
     texlab
     (prismlauncher.override {
       jdks = [
@@ -105,6 +104,14 @@
       iconTheme = "Papirus-Dark";
     };
   };
+
+  /*
+  qt = {
+    enable = true;
+    platformTheme.name = "kde6";
+    style.name = "kvantum";
+  };
+  */
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

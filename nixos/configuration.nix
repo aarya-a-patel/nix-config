@@ -27,6 +27,7 @@
     # ./users.nix
 
     ./gpu-configuration.nix
+    ./boot.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -91,26 +92,6 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
-
-  # Bootloader.
-  boot.loader.systemd-boot = {
-    enable = true;
-    extraInstallCommands = ''
-      echo "default @saved" >> /boot/loader/loader.conf
-    '';
-  };
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth = {
-    enable = true;
-    theme = "bgrt";
-  };
-  boot.initrd.verbose = false;
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.consoleLogLevel = 0;
-  boot.kernelParams = ["quiet" "udev.log_level=0"];
-
-  # Enable NTFS
-  boot.supportedFilesystems.ntfs = true;
 
   # Auto upgrade
   /*
@@ -221,7 +202,6 @@
   security.protectKernelImage = false;
   boot.resumeDevice = "/dev/nvme0n1p7";
 
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -256,6 +236,7 @@
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     qemu_full
+    gparted
     quickemu
     wineWowPackages.waylandFull
     winetricks
@@ -299,6 +280,12 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+  };
+
 
   networking.hostName = "nixos"; # Define your hostname.
 

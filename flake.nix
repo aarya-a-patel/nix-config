@@ -29,6 +29,11 @@
 
     # Determinate Nix
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -73,6 +78,7 @@
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          inputs.stylix.nixosModules.stylix
           ./cachix.nix
           # > Our main nixos configuration file <
           ./nixos/configuration.nix
