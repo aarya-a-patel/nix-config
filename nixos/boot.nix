@@ -11,7 +11,7 @@
     loader.efi.canTouchEfiVariables = true;
     plymouth = {
       enable = true;
-      # theme = "bgrt";
+      theme = "bgrt";
     };
     initrd.verbose = false;
     initrd.kernelModules = ["amdgpu"];

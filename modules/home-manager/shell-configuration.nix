@@ -83,7 +83,22 @@
 
   programs.helix = {
     enable = true;
-    settings.theme = lib.mkDefault "gruvbox";
+    settings = {
+      theme = lib.mkForce "gruvbox_transparent";
+    };
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = lib.getExe pkgs.alejandra;
+      }
+    ];
+    themes = {
+      gruvbox_transparent = {
+        "inherits" = "gruvbox";
+        "ui.background" = {};
+      };
+    };
   };
 
   home.packages = with pkgs; [

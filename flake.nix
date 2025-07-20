@@ -24,6 +24,7 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     bacon-ls = {
@@ -97,6 +98,7 @@
             home-manager = {
               # useGlobalPkgs = true;
               useUserPackages = true;
+              backupFileExtension = "backup";
               sharedModules = [plasma-manager.homeManagerModules.plasma-manager];
 
               users.aaryap = import ./home-manager/home.nix;

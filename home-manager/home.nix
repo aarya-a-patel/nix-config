@@ -5,7 +5,20 @@
   outputs,
   pkgs,
   ...
-}: {
+}: let
+  firefox-config = {
+    enable = true;
+    profiles.default = {
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        bitwarden
+        darkreader
+        onetab
+        one-click-wayback
+      ];
+    };
+  };
+in {
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -14,6 +27,7 @@
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
+    inputs.zen-browser.homeModules.beta
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
@@ -26,7 +40,6 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
-      outputs.overlays.zen-browser-package
       inputs.nur.overlays.default
 
       # You can also add overlays exported from other flakes:
@@ -59,18 +72,49 @@
     extraConfig = builtins.readFile ./dotfiles/wezterm/wezterm.lua;
   };
 
-  programs.firefox = {
+  programs.ghostty = {
     enable = true;
-    profiles.default = {
-      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        bitwarden
-        darkreader
-        onetab
-        one-click-wayback
-      ];
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    installVimSyntax = true;
+    installBatSyntax = true;
+  };
+
+  programs.kitty = {
+    enable = true;
+    enableGitIntegration = true;
+    shellIntegration = {
+      mode = "";
+      enableZshIntegration = true;
+      enableBashIntegration = true;
     };
   };
+
+  programs.firefox = firefox-config;
+  programs.zen-browser =
+    firefox-config
+    // {
+      policies = {
+        AutofillAddressEnabled = true;
+        AutofillCreditCardEnabled = false;
+        DisableAppUpdate = true;
+        DisableFeedbackCommands = true;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        DisableTelemetry = true;
+        DontCheckDefaultBrowser = true;
+        NoDefaultBookmarks = true;
+        OfferToSaveLogins = false;
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
+      };
+    };
+
+  stylix.targets.firefox.profileNames = ["default"];
 
   home.packages = with pkgs; [
     google-chrome
@@ -97,7 +141,6 @@
     stable.input-leap
     papirus-icon-theme
     sshfs
-    zen-browser.default
   ];
 
   # Enable home-manager and git

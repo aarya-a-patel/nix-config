@@ -286,6 +286,18 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+    opacity = {
+      applications = 0.8;
+      terminal = 0.8;
+    };
+    polarity = "dark";
+    targets.plymouth.enable = false;
+    fonts = {
+      sansSerif = {
+        name = "Inter";
+        package = pkgs.inter;
+      };
+    };
   };
 
   networking.hostName = "nixos"; # Define your hostname.
