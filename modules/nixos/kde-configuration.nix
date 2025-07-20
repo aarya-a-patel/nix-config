@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ./xdg-configuration.nix
   ];
@@ -20,4 +18,3 @@
     kdePackages.xdg-desktop-portal-kde
   ];
 }
-

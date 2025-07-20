@@ -87,7 +87,7 @@
             home-manager = {
               # useGlobalPkgs = true;
               useUserPackages = true;
-              sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+              sharedModules = [plasma-manager.homeManagerModules.plasma-manager];
 
               users.aaryap = import ./home-manager/home.nix;
 

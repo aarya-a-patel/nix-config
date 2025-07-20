@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Default terminal
   xdg.terminal-exec = {
     enable = true;
@@ -19,4 +17,3 @@
     };
   };
 }
-

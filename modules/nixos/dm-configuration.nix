@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   services.displayManager.defaultSession = "plasma";
   services.displayManager.ly.enable = true;
   services.displayManager.ly.settings = {
@@ -13,4 +11,3 @@
   #   wayland = true;
   # };
 }
-

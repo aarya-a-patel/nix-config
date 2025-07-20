@@ -1,5 +1,4 @@
-
-{ pkgs, ... }: {
+{pkgs, ...}: {
   boot = {
     # Bootloader.
     bootspec.enable = true;
@@ -15,7 +14,7 @@
       # theme = "bgrt";
     };
     initrd.verbose = false;
-    initrd.kernelModules = [ "amdgpu" ];
+    initrd.kernelModules = ["amdgpu"];
     consoleLogLevel = 0;
     kernelParams = ["quiet" "udev.log_level=0"];
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;

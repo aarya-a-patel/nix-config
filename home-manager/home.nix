@@ -63,37 +63,38 @@
     enable = true;
   };
 
-  # programs.neovim.enable = true;
-  home.packages = (with pkgs; [
-    google-chrome
-    vlc
-    slack
-    vesktop
-    vscode
-    zed-editor
-    kitty
-    # code-cursor
-    # libreoffice-fresh
-    # mailspring
-    thunderbird
-    # nodejs_22
-    texlab
-    (prismlauncher.override {
-      jdks = [
-        temurin-bin-21
-        temurin-bin-8
-        temurin-bin-17
-      ];
-    })
-    ghidra
-    # input-leap # broken right now
-    stable.input-leap
-    papirus-icon-theme
-    sshfs
-    mission-planner
-  ]) ++ [
-    inputs.zen-browser.packages.x86_64-linux.default
-  ];
+  home.packages =
+    (with pkgs; [
+      google-chrome
+      vlc
+      slack
+      vesktop
+      vscode
+      zed-editor
+      kitty
+      # code-cursor
+      # libreoffice-fresh
+      # mailspring
+      thunderbird
+      # nodejs_22
+      texlab
+      (prismlauncher.override {
+        jdks = [
+          temurin-bin-21
+          temurin-bin-8
+          temurin-bin-17
+        ];
+      })
+      ghidra
+      # input-leap # broken right now
+      stable.input-leap
+      papirus-icon-theme
+      sshfs
+      mission-planner
+    ])
+    ++ [
+      inputs.zen-browser.packages.x86_64-linux.default
+    ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

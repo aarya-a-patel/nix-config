@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ./xdg-configuration.nix
   ];
@@ -25,4 +23,3 @@
     wl-clipboard-rs
   ];
 }
-

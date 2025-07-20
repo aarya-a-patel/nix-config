@@ -65,7 +65,7 @@
       # Optimize the store automatically
       auto-optimise-store = true;
       # Enable flakes and new 'nix' command
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       # Increase download-buffer-size
       download-buffer-size = 500000000;
       # Set trusted users
@@ -126,7 +126,7 @@
   # Enable the firewall
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 ];
+    allowedTCPPorts = [22];
   };
 
   # System clock is local time
@@ -162,7 +162,7 @@
   services.fail2ban.enable = true;
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [22];
     startWhenNeeded = true;
     settings = {
       PasswordAuthentication = false;
@@ -175,12 +175,12 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
-    videoDrivers = [ "amdgpu" ];
+    videoDrivers = ["amdgpu"];
     xkb = {
       layout = "us";
       variant = "";
     };
-    excludePackages = [ pkgs.xterm ];
+    excludePackages = [pkgs.xterm];
   };
 
   # Use system 76 scheduler
@@ -227,7 +227,7 @@
   # Enable Docker.
   virtualisation.podman = {
     enable = true;
-    dockerCompat = true;  # Enables Docker-compatible socket at /var/run/docker.sock
+    dockerCompat = true; # Enables Docker-compatible socket at /var/run/docker.sock
     # defaultNetwork.settings.dns_enabled = true;  # Optional but useful for networking
   };
 
@@ -235,7 +235,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    qemu_full
+    stable.qemu_full
     gparted
     quickemu
     wineWowPackages.waylandFull
@@ -248,11 +248,13 @@
   ];
 
   # memory things
-  swapDevices = [ {
-    device = "/dev/nvme0n1p7";
-    # size = 16*1024;
-    priority = 1;
-  } ];
+  swapDevices = [
+    {
+      device = "/dev/nvme0n1p7";
+      # size = 16*1024;
+      priority = 1;
+    }
+  ];
   services.earlyoom.enable = true;
   zramSwap.enable = true;
 
@@ -286,7 +288,6 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
   };
 
-
   networking.hostName = "nixos"; # Define your hostname.
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
@@ -298,7 +299,7 @@
       isNormalUser = true;
       description = "Aarya Patel";
       # Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "networkmanager" "wheel" "docker" "dialout" "libvirtd" ];
+      extraGroups = ["networkmanager" "wheel" "docker" "dialout" "libvirtd"];
     };
   };
 

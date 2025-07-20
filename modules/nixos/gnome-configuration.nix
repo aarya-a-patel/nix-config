@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./xdg-configuration.nix
   ];
@@ -24,13 +26,12 @@
     terminal = "wezterm";
   };
 
-
-  environment.gnome.excludePackages = (with pkgs; [
+  environment.gnome.excludePackages = with pkgs; [
     gnome-console
     gnome-terminal
     epiphany
     geary
-  ]);
+  ];
 
   # Performance Improvements
   nixpkgs.config.allowAliases = false;

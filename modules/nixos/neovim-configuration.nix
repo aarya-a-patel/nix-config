@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Enable neovim.
   programs.neovim = {
     enable = true;

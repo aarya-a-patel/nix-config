@@ -1,6 +1,9 @@
-{ pkgs, config, ... }:
-
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   home.shellAliases = {
     ls = "eza";
     cd = "z";
@@ -76,6 +79,11 @@
     enableTransience = true;
     enableZshIntegration = true;
     enableBashIntegration = true;
+  };
+
+  programs.helix = {
+    enable = true;
+    settings.theme = lib.mkDefault "gruvbox";
   };
 
   home.packages = with pkgs; [
