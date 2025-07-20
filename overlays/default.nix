@@ -34,4 +34,12 @@
       config.allowUnfree = true;
     };
   };
+
+  zen-browser-package = _final: prev: {
+    zen-browser = inputs.zen-browser.packages.${prev.system};
+  };
+
+  bacon-ls-package = _final: prev: {
+    bacon-ls = inputs.bacon-ls.defaultPackage.${prev.system};
+  };
 }

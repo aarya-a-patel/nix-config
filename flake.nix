@@ -10,8 +10,10 @@
     # Also see the 'stable-packages' overlay at 'overlays/default.nix'.
 
     # Home manager
-    home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.1";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
@@ -24,16 +26,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    bacon-ls.url = "github:crisidev/bacon-ls";
-    bacon-ls.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Determinate Nix
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
+    bacon-ls = {
+      url = "github:crisidev/bacon-ls";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Determinate Nix
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
   };
 
   outputs = {
@@ -59,6 +68,7 @@
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);

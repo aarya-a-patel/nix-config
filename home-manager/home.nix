@@ -3,8 +3,6 @@
 {
   inputs,
   outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
@@ -28,6 +26,8 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
+      outputs.overlays.zen-browser-package
+      inputs.nur.overlays.default
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -61,40 +61,44 @@
 
   programs.firefox = {
     enable = true;
+    profiles.default = {
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        bitwarden
+        darkreader
+        onetab
+        one-click-wayback
+      ];
+    };
   };
 
-  home.packages =
-    (with pkgs; [
-      google-chrome
-      vlc
-      slack
-      vesktop
-      vscode
-      zed-editor
-      kitty
-      # code-cursor
-      # libreoffice-fresh
-      # mailspring
-      thunderbird
-      # nodejs_22
-      texlab
-      (prismlauncher.override {
-        jdks = [
-          temurin-bin-21
-          temurin-bin-8
-          temurin-bin-17
-        ];
-      })
-      ghidra
-      # input-leap # broken right now
-      stable.input-leap
-      papirus-icon-theme
-      sshfs
-      mission-planner
-    ])
-    ++ [
-      inputs.zen-browser.packages.x86_64-linux.default
-    ];
+  home.packages = with pkgs; [
+    google-chrome
+    vlc
+    vesktop
+    vscode
+    zed-editor
+    kitty
+    # code-cursor
+    # libreoffice-fresh
+    # mailspring
+    thunderbird
+    # nodejs_22
+    texlab
+    (prismlauncher.override {
+      jdks = [
+        temurin-bin-21
+        temurin-bin-8
+        temurin-bin-17
+      ];
+    })
+    ghidra
+    # input-leap # broken right now
+    stable.input-leap
+    papirus-icon-theme
+    sshfs
+    zen-browser.default
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

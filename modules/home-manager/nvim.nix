@@ -1,8 +1,12 @@
 {
   pkgs,
-  inputs,
+  outputs,
   ...
 }: {
+  nixpkgs.overlays = [
+    outputs.overlays.bacon-ls-package
+  ];
+
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -16,7 +20,7 @@
       clang-tools
       texlab
       clang
-      inputs.bacon-ls.defaultPackage.${pkgs.system}
+      bacon-ls
     ];
   };
 
