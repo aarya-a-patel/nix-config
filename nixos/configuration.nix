@@ -297,6 +297,10 @@
         name = "Inter";
         package = pkgs.inter;
       };
+      monospace = {
+        name = "FiraCode Nerd Font Mono";
+        package = pkgs.nerd-fonts.fira-code;
+      };
     };
   };
 
