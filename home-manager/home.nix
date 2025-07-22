@@ -147,12 +147,14 @@ in {
   # Enable home-manager and git
   programs.home-manager.enable = true;
 
+  /*
   programs.plasma = {
     enable = true;
     workspace = {
       iconTheme = "Papirus-Dark";
     };
   };
+  */
 
   /*
   qt = {

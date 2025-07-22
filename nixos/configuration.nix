@@ -14,7 +14,7 @@
     outputs.nixosModules.asus-touch-numpad-driver
     outputs.nixosModules.bluetooth
     outputs.nixosModules.dm
-    outputs.nixosModules.kde
+    outputs.nixosModules.cosmic
     outputs.nixosModules.hyprland-env
     outputs.nixosModules.shell
     outputs.nixosModules.neovim
@@ -153,6 +153,7 @@
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
     nerd-fonts.droid-sans-mono
   ];
 

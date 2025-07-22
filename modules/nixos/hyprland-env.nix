@@ -7,12 +7,15 @@
   programs = {
     hyprland = {
       enable = true;
-      # xwayland.enable = true;
+      xwayland.enable = true;
     };
-    waybar.enable = true;
+    # waybar.enable = true;
   };
 
+  services.gnome.gnome-keyring.enable = true;
+
   environment.systemPackages = with pkgs; [
+    libsecret
     inotify-tools
     brightnessctl
     hypridle
