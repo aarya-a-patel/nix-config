@@ -89,12 +89,21 @@ in {
       enableZshIntegration = true;
       enableBashIntegration = true;
     };
+    settings = {
+      window_padding_width = "0 10";
+    };
   };
 
   programs.firefox = firefox-config;
   programs.zen-browser =
     firefox-config
     // {
+      profiles.default.settings = {
+        "zen.widget.linux.transparency" = true;
+        "zen.view.compact.should-enable-at-startup" = true;
+        "zen.theme.gradient.show-custom-colors" = true;
+        "zen.view.grey-out-inactive-windows" = false;
+      };
       policies = {
         AutofillAddressEnabled = true;
         AutofillCreditCardEnabled = false;
@@ -123,12 +132,7 @@ in {
     vesktop
     vscode
     zed-editor
-    kitty
-    # code-cursor
-    # libreoffice-fresh
-    # mailspring
     thunderbird
-    # nodejs_22
     texlab
     (prismlauncher.override {
       jdks = [

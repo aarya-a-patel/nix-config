@@ -290,6 +290,7 @@
     opacity = {
       applications = 0.8;
       terminal = 0.8;
+      desktop = 0.8;
     };
     polarity = "dark";
     targets.plymouth.enable = false;

@@ -174,6 +174,12 @@ in {
       enable = true;
       target = "hyprland-session.target";
     };
+    settings = {
+      appearance = {
+        font_name = "JetbrainsMono Nerd Font Propo";
+        style = "Solid";
+      };
+    };
   };
 
   xdg = {
