@@ -219,6 +219,7 @@ in {
     };
   };
 
+  /*
   programs.quickshell = {
     enable = true;
     systemd = {
@@ -226,6 +227,7 @@ in {
       target = hyprland-target;
     };
   };
+  */
 
   programs.hyprlock = {
     enable = true;
