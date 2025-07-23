@@ -236,15 +236,10 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    stable.qemu_full
     gparted
-    quickemu
-    wineWowPackages.waylandFull
-    winetricks
     gcc
     cachix
     gparted
-    lutris
     (hiPrio uutils-coreutils-noprefix)
   ];
 

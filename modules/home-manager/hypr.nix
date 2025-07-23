@@ -44,7 +44,7 @@
     "CTRL ALT, T, exec, wezterm"
     "${mod}, E, exec, dolphin"
     "${mod}, M, exit,"
-    "${mod}, C, killactive,"
+    "${mod}, Q, killactive,"
     "${mod}, F, togglefloating,"
     "${mod}, P, pseudo,"
     "${mod}, W, togglesplit,"
