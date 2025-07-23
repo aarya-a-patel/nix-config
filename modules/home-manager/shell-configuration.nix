@@ -85,14 +85,21 @@
     enable = true;
     settings = {
       theme = lib.mkForce "gruvbox_transparent";
+      editor.line-number = "relative";
     };
-    languages.language = [
-      {
-        name = "nix";
-        auto-format = true;
-        formatter.command = lib.getExe pkgs.alejandra;
-      }
-    ];
+    languages = {
+      language-server = {
+        nixd.command = lib.getExe pkgs.nixd;
+      };
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = lib.getExe pkgs.alejandra;
+          language-servers = ["nixd"];
+        }
+      ];
+    };
     themes = {
       gruvbox_transparent = {
         "inherits" = "gruvbox";

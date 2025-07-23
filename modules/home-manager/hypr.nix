@@ -1,9 +1,5 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
+  hyprland-target = "hyprland-session.target";
   mod = "SUPER";
 
   # Generate workspace binds (1-10)
@@ -60,6 +56,7 @@
   miscBinds = [
     "${mod}, mouse_down, workspace, e+1"
     "${mod}, mouse_up, workspace, e-1"
+    "${mod}, L, exec, loginctl lock-session"
   ];
 in {
   wayland.windowManager.hyprland = {
@@ -134,7 +131,6 @@ in {
 
       exec-once = [
         # "~/.config/waybar/waybar_auto_refresh.sh"
-        "hypridle"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
       ];
@@ -144,7 +140,7 @@ in {
         "${mod}, mouse:272, movewindow"
         "${mod}, mouse:273, resizewindow"
       ];
-      bindl = [",switch:Lid Switch,exec,hyprlock"];
+      bindl = [",switch:Lid Switch,exec,loginctl lock-session"];
 
       # Media keys
       bindle = [
@@ -157,13 +153,54 @@ in {
     };
   };
 
+  services.hypridle = {
+    enable = true;
+    systemdTarget = hyprland-target;
+    settings = {
+      general = {
+        lock_cmd = "hyprctl dispatch exec hyprlock";
+        before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
+        after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+      };
+
+      listener = [
+        {
+          timeout = 150; # 2.5min.
+          on-timeout = "brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
+          on-resume = "brightnessctl -r"; # monitor backlight restor.
+        }
+
+        # turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
+        #listener = {
+        #    timeout = 150;                                          # 2.5min.
+        #    on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0"; # turn off keyboard backlight.
+        #    on-resume = "brightnessctl -rd rgb:kbd_backlight";        # turn on keyboard backlight.
+        #};
+
+        {
+          timeout = 300; # 5min
+          on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
+        }
+
+        {
+          timeout = 330; # 5.5min
+          on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
+          on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+        }
+
+        {
+          timeout = 600; # 10min
+          on-timeout = "systemctl suspend"; # suspend pc
+        }
+      ];
+    };
+  };
+
   # Required apps
   home.packages = with pkgs; [
-    wl-clipboard
-    rofi
+    wl-clipboard-rs
+    rofi-wayland
     cliphist
-    hypridle
-    hyprlock
     brightnessctl
     wireplumber
   ];
@@ -172,7 +209,7 @@ in {
     enable = true;
     systemd = {
       enable = true;
-      target = "hyprland-session.target";
+      target = hyprland-target;
     };
     settings = {
       appearance = {
@@ -182,23 +219,72 @@ in {
     };
   };
 
+  programs.quickshell = {
+    enable = true;
+    systemd = {
+      enable = true;
+      target = hyprland-target;
+    };
+  };
+
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      background = {
+        monitor = "";
+        # path = /home/me/someImage.png   # only png supported for now
+
+        # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanations
+        blur_passes = 1; # 0 disables blurring
+        blur_size = 7;
+        noise = 0.0117;
+        contrast = 0.8916;
+        brightness = 0.8172;
+        vibrancy = 0.1696;
+        vibrancy_darkness = 0.0;
+      };
+
+      input-field = {
+        monitor = "";
+        size = "200, 50";
+        outline_thickness = 3;
+        dots_size = 0.33; # Scale of input-field height, 0.2 - 0.8
+        dots_spacing = 0.15; # Scale of dots' absolute size, 0.0 - 1.0
+        dots_center = false;
+        dots_rounding = -1; # -1 default circle, -2 follow input-field rounding
+        # outer_color = "rgb(151515)";
+        # inner_color = "rgb(200, 200, 200)";
+        fade_on_empty = true;
+        fade_timeout = 1000; # Milliseconds before fade_on_empty is triggered.
+        placeholder_text = "<i>Input Password...</i>"; # Text rendered in the input box when it's empty.
+        hide_input = false;
+        rounding = -1; # -1 means complete rounding (circle/oval)
+        fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>"; # can be set to empty
+        fail_transition = 300; # transition time in ms between normal outer_color and fail_color
+        capslock_color = -1;
+        numlock_color = -1;
+        bothlock_color = -1; # when both locks are active. -1 means don't change outer color (same for above)
+        invert_numlock = false; # change color if numlock is off
+        swap_font_color = false; # see below
+
+        position = "0, -20";
+        halign = "center";
+        valign = "center";
+      };
+    };
+  };
+
   xdg = {
     enable = true;
-    configFile."hypr/hypridle.conf" = {
-      source = ./dotfiles/hypr/hypridle.conf;
-      recursive = true;
-    };
-    configFile."hypr/hyprlock.conf" = {
-      source = ./dotfiles/hypr/hyprlock.conf;
-      recursive = true;
-    };
     configFile."rofi" = {
       source = ./dotfiles/rofi;
       recursive = true;
     };
+    /*
     configFile."waybar" = {
       source = ./dotfiles/waybar;
       recursive = true;
     };
+    */
   };
 }

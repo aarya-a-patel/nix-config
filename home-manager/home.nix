@@ -90,7 +90,7 @@ in {
       enableBashIntegration = true;
     };
     settings = {
-      window_padding_width = "0 10";
+      window_padding_width = 10;
     };
   };
 
