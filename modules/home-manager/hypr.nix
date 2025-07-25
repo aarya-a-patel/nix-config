@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   hyprland-target = "hyprland-session.target";
   mod = "SUPER";
 
@@ -133,6 +137,8 @@ in {
         # "~/.config/waybar/waybar_auto_refresh.sh"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
+        "systemctl --user start hyprpolkitagent"
+        "${lib.getExe pkgs.networkmanagerapplet} --indicator"
       ];
 
       bind = appBinds ++ workspaceBinds ++ movementBinds ++ resizeBinds ++ miscBinds;
@@ -152,6 +158,8 @@ in {
       ];
     };
   };
+
+  services.hyprpolkitagent.enable = true;
 
   services.hypridle = {
     enable = true;
@@ -203,6 +211,7 @@ in {
     cliphist
     brightnessctl
     wireplumber
+    networkmanagerapplet
   ];
 
   programs.ashell = {
