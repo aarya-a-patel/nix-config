@@ -1,9 +1,5 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
-  hyprland-target = "hyprland-session.target";
+{pkgs, ...}: let
+  hyprland-target = "wayland-wm@Hyprland.service"; # "wayland-session@Hyprland.target";
   mod = "SUPER";
 
   # Generate workspace binds (1-10)
@@ -66,7 +62,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    systemd.enable = true;
+    systemd.enable = false;
 
     settings = {
       monitor = ",preferred,auto,1";
@@ -133,13 +129,12 @@ in {
         }
       ];
 
-      exec-once = [
-        # "~/.config/waybar/waybar_auto_refresh.sh"
-        "wl-paste --type text --watch cliphist store"
-        "wl-paste --type image --watch cliphist store"
-        "systemctl --user start hyprpolkitagent"
-        "${lib.getExe pkgs.networkmanagerapplet} --indicator"
-      ];
+      # exec-once = [
+      #   # "~/.config/waybar/waybar_auto_refresh.sh"
+      #   "uwsm app -- wl-paste --type text --watch cliphist store"
+      #   "uwsm app -- wl-paste --type image --watch cliphist store"
+      #   "systemctl --user start hyprpolkitagent"
+      # ];
 
       bind = appBinds ++ workspaceBinds ++ movementBinds ++ resizeBinds ++ miscBinds;
       bindm = [

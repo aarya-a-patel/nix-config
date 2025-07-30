@@ -1,13 +1,25 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  outputs,
+  ...
+}: {
   imports = [
     ./xdg-configuration.nix
   ];
 
+  home-manager.users.aaryap = {
+    imports = [
+      outputs.homeManagerModules.hypr
+    ];
+  };
+
   # Enable Hyprland.
   programs = {
+    uwsm.enable = true;
     hyprland = {
       enable = true;
       xwayland.enable = true;
+      withUWSM = true;
     };
     # waybar.enable = true;
     hyprlock.enable = true;
