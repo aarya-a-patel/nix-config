@@ -39,7 +39,7 @@
 
   # App launch + system controls
   appBinds = [
-    "${mod}, SPACE, exec, rofi -show drun"
+    "${mod}, SPACE, exec, fuzzel"
     "${mod}, T, exec, wezterm"
     "CTRL ALT, T, exec, wezterm"
     "${mod}, E, exec, dolphin"
@@ -202,12 +202,13 @@ in {
   # Required apps
   home.packages = with pkgs; [
     wl-clipboard-rs
-    rofi-wayland
     cliphist
     brightnessctl
     wireplumber
     networkmanagerapplet
   ];
+
+  programs.fuzzel.enable = true;
 
   programs.ashell = {
     enable = true;
@@ -282,11 +283,11 @@ in {
 
   xdg = {
     enable = true;
+    /*
     configFile."rofi" = {
       source = ./dotfiles/rofi;
       recursive = true;
     };
-    /*
     configFile."waybar" = {
       source = ./dotfiles/waybar;
       recursive = true;

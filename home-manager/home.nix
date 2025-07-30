@@ -6,18 +6,13 @@
   pkgs,
   ...
 }: let
-  firefox-config = {
-    enable = true;
-    profiles.default = {
-      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        bitwarden
-        darkreader
-        onetab
-        one-click-wayback
-      ];
-    };
-  };
+  firefox-extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    ublock-origin
+    bitwarden
+    darkreader
+    onetab
+    one-click-wayback
+  ];
 in {
   # You can import other home-manager modules here
   imports = [
@@ -90,43 +85,49 @@ in {
     };
     settings = {
       window_padding_width = 10;
+      touch_scroll_multipler = 10.0;
     };
   };
 
-  programs.firefox = firefox-config;
-  programs.zen-browser =
-    firefox-config
-    // {
-      profiles.default.settings = {
+  programs.firefox = {
+    enable = true;
+    profiles.default.extensions.packages = firefox-extensions;
+  };
+  programs.zen-browser = {
+    enable = true;
+    profiles.default = {
+      settings = {
         "zen.widget.linux.transparency" = true;
         "zen.view.compact.should-enable-at-startup" = true;
         "zen.theme.gradient.show-custom-colors" = true;
         "zen.view.grey-out-inactive-windows" = false;
       };
-      policies = {
-        AutofillAddressEnabled = true;
-        AutofillCreditCardEnabled = false;
-        DisableAppUpdate = true;
-        DisableFeedbackCommands = true;
-        DisableFirefoxStudies = true;
-        DisablePocket = true;
-        DisableTelemetry = true;
-        DontCheckDefaultBrowser = true;
-        NoDefaultBookmarks = true;
-        OfferToSaveLogins = false;
-        EnableTrackingProtection = {
-          Value = true;
-          Locked = true;
-          Cryptomining = true;
-          Fingerprinting = true;
-        };
+      extensions.packages = firefox-extensions;
+    };
+    policies = {
+      AutofillAddressEnabled = true;
+      AutofillCreditCardEnabled = false;
+      DisableAppUpdate = true;
+      DisableFeedbackCommands = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = true;
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
       };
     };
+  };
 
   stylix.targets.firefox.profileNames = ["default"];
+  stylix.targets.zen-browser.enable = false;
 
   home.packages = with pkgs; [
-    google-chrome
     vlc
     vesktop
     vscode
@@ -141,7 +142,6 @@ in {
       ];
     })
     ghidra
-    # input-leap # broken right now
     stable.input-leap
     papirus-icon-theme
     sshfs
