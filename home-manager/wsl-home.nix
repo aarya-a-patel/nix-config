@@ -57,6 +57,10 @@
     sshfs
   ];
 
+  home.sessionVariables = {
+    XDG_RUNTIME_DIR = "/mnt/wslg/runtime-dir";
+  };
+
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.nh.flake = "/home/aarya/repos/nix-config";
