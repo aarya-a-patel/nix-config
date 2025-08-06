@@ -5,4 +5,5 @@
   # my-module = import ./my-module.nix;
   shell = import ./shell-configuration.nix;
   nvim = import ./nvim.nix;
+  hypr = import ./hypr.nix;
 }

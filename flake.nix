@@ -10,12 +10,8 @@
     # Also see the 'stable-packages' overlay at 'overlays/default.nix'.
 
     # Home manager
-    home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.1";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Cosmic
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
+    home-manager = {
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -25,21 +21,26 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    # Fix wezterm
-    /*
-    wezterm = {
-      url = "github:wez/wezterm?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    */
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
-    bacon-ls.url = "github:crisidev/bacon-ls";
-    bacon-ls.inputs.nixpkgs.follows = "nixpkgs";
+    bacon-ls = {
+      url = "github:crisidev/bacon-ls";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Determinate Nix
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
@@ -49,7 +50,6 @@
     self,
     nixpkgs,
     home-manager,
-    nixos-cosmic,
     plasma-manager,
     ...
   } @ inputs: let
@@ -69,6 +69,7 @@
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
@@ -88,14 +89,8 @@
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          inputs.stylix.nixosModules.stylix
           ./cachix.nix
-          {
-            nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-            };
-          }
-          nixos-cosmic.nixosModules.default
           # > Our main nixos configuration file <
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
@@ -103,7 +98,8 @@
             home-manager = {
               # useGlobalPkgs = true;
               useUserPackages = true;
-              sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+              backupFileExtension = "backup";
+              sharedModules = [plasma-manager.homeManagerModules.plasma-manager];
 
               users.aaryap = import ./home-manager/home.nix;
 

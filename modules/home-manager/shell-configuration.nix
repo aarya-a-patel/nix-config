@@ -1,6 +1,9 @@
-{ pkgs, config, ... }:
-
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   home.shellAliases = {
     ls = "eza";
     cd = "z";
@@ -8,7 +11,6 @@
 
   programs.zsh = {
     enable = true;
-    dotDir = ".config/zsh";
     history = {
       path = "${config.xdg.dataHome}/zsh/history";
       extended = true;
@@ -76,6 +78,33 @@
     enableTransience = true;
     enableZshIntegration = true;
     enableBashIntegration = true;
+  };
+
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = lib.mkForce "gruvbox_transparent";
+      editor.line-number = "relative";
+    };
+    languages = {
+      language-server = {
+        nixd.command = lib.getExe pkgs.nixd;
+      };
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = lib.getExe pkgs.alejandra;
+          language-servers = ["nixd"];
+        }
+      ];
+    };
+    themes = {
+      gruvbox_transparent = {
+        "inherits" = "gruvbox";
+        "ui.background" = {};
+      };
+    };
   };
 
   home.packages = with pkgs; [

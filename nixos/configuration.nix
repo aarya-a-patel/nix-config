@@ -14,7 +14,8 @@
     outputs.nixosModules.asus-touch-numpad-driver
     outputs.nixosModules.bluetooth
     outputs.nixosModules.dm
-    outputs.nixosModules.kde
+    outputs.nixosModules.cosmic
+    outputs.nixosModules.hyprland-env
     outputs.nixosModules.shell
     outputs.nixosModules.neovim
 
@@ -26,6 +27,7 @@
     # ./users.nix
 
     ./gpu-configuration.nix
+    ./boot.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -63,7 +65,7 @@
       # Optimize the store automatically
       auto-optimise-store = true;
       # Enable flakes and new 'nix' command
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       # Increase download-buffer-size
       download-buffer-size = 500000000;
       # Set trusted users
@@ -90,26 +92,6 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
-
-  # Bootloader.
-  boot.loader.systemd-boot = {
-    enable = true;
-    extraInstallCommands = ''
-      echo "default @saved" >> /boot/loader/loader.conf
-    '';
-  };
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth = {
-    enable = true;
-    theme = "bgrt";
-  };
-  boot.initrd.verbose = false;
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.consoleLogLevel = 0;
-  boot.kernelParams = ["quiet" "udev.log_level=0"];
-
-  # Enable NTFS
-  boot.supportedFilesystems.ntfs = true;
 
   # Auto upgrade
   /*
@@ -144,7 +126,7 @@
   # Enable the firewall
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 ];
+    allowedTCPPorts = [22];
   };
 
   # System clock is local time
@@ -171,6 +153,7 @@
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
     nerd-fonts.droid-sans-mono
   ];
 
@@ -180,7 +163,7 @@
   services.fail2ban.enable = true;
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [22];
     startWhenNeeded = true;
     settings = {
       PasswordAuthentication = false;
@@ -193,12 +176,12 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
-    videoDrivers = [ "amdgpu" ];
+    videoDrivers = ["amdgpu"];
     xkb = {
       layout = "us";
       variant = "";
     };
-    excludePackages = [ pkgs.xterm ];
+    excludePackages = [pkgs.xterm];
   };
 
   # Use system 76 scheduler
@@ -219,7 +202,6 @@
   # enable hibernation?
   security.protectKernelImage = false;
   boot.resumeDevice = "/dev/nvme0n1p7";
-
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -246,7 +228,7 @@
   # Enable Docker.
   virtualisation.podman = {
     enable = true;
-    dockerCompat = true;  # Enables Docker-compatible socket at /var/run/docker.sock
+    dockerCompat = true; # Enables Docker-compatible socket at /var/run/docker.sock
     # defaultNetwork.settings.dns_enabled = true;  # Optional but useful for networking
   };
 
@@ -254,23 +236,21 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    qemu_full
-    quickemu
-    wineWowPackages.waylandFull
-    winetricks
+    gparted
     gcc
     cachix
     gparted
-    lutris
     (hiPrio uutils-coreutils-noprefix)
   ];
 
   # memory things
-  swapDevices = [ {
-    device = "/dev/nvme0n1p7";
-    # size = 16*1024;
-    priority = 1;
-  } ];
+  swapDevices = [
+    {
+      device = "/dev/nvme0n1p7";
+      # size = 16*1024;
+      priority = 1;
+    }
+  ];
   services.earlyoom.enable = true;
   zramSwap.enable = true;
 
@@ -299,6 +279,28 @@
     enableSSHSupport = true;
   };
 
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+    opacity = {
+      applications = 0.8;
+      terminal = 0.8;
+      desktop = 0.8;
+    };
+    polarity = "dark";
+    targets.plymouth.enable = false;
+    fonts = {
+      sansSerif = {
+        name = "Inter";
+        package = pkgs.inter;
+      };
+      monospace = {
+        name = "FiraCode Nerd Font Mono";
+        package = pkgs.nerd-fonts.fira-code;
+      };
+    };
+  };
+
   networking.hostName = "nixos"; # Define your hostname.
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
@@ -310,7 +312,7 @@
       isNormalUser = true;
       description = "Aarya Patel";
       # Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "networkmanager" "wheel" "docker" "dialout" "libvirtd" ];
+      extraGroups = ["networkmanager" "wheel" "docker" "dialout" "libvirtd"];
     };
   };
 
@@ -320,5 +322,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }

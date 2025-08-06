@@ -1,0 +1,119 @@
+{
+  "layer": "top",
+  // "modules-left": ["custom/launcher","cpu","memory","custom/media","tray"],
+  "modules-left": ["custom/launcher", "custom/media","tray"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": ["backlight","wireplumber", "clock", "network", "battery","custom/power"],
+
+  "wireplumber": {
+    "tooltip": false,
+    "scroll-step": 0.2,
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰝟  {volume}%",
+    "on-click":"wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "format-icons": ["", "", ""]
+  },
+
+  "network": {
+    "tooltip": false,
+    "format-wifi": "  {essid}",
+    "format-ethernet": "󰈀"
+  },
+  "backlight": {
+    "tooltip": false,
+    "format": "󰃞  {}%",
+    "interval":1
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "tray":{
+    "icon-size":18,
+    "spacing": 10
+  },
+  "clock": {
+    "timezone": "America/New_York",
+    // "format": "  {:%I:%M %p  󰃶 %Y-%m-%d}"
+    "format": "  {:%I:%M %p}"
+  },
+  "cpu": {
+    "interval": 15,
+    "format": "  {}%",
+    "max-length": 10
+  },
+  "memory": {
+    "interval": 30,
+    "format": "  {}%",
+    "max-length": 10
+  },
+  "custom/media": {
+    "interval": 30,
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 20,
+    "format-icons": {
+      "spotify": " ",
+      "default": "󰎆 "
+    },
+    "escape": true,
+    "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+    "on-click": "playerctl play-pause"
+  },
+  "custom/launcher":{
+    "format": " ",
+    "on-click": "rofi -show drun",
+    "on-click-right": "pkill rofi"
+  },
+  "custom/power":{
+    "format": " ",
+    "on-click": "bash ~/.config/rofi/leave/leave.sh"
+  },
+  "custom/wallpaper":{
+    "format":" ",
+    "on-click": "bash ~/.config/system_scripts/pkill_bc"
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+    },
+
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十",
+      "11": "十一",
+      "12": "十二",
+      "13": "十三",
+      "14": "十四",
+      "15": "十五",
+      "16": "十六",
+      "17": "十七",
+      "18": "十八",
+      "19": "十九",
+      "20": "二十",
+    }
+  }
+}
