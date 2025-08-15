@@ -118,5 +118,6 @@
     nix-fast-build
     nix-tree
     just
+    claude-code
   ];
 }
