@@ -119,5 +119,6 @@
     nix-tree
     just
     claude-code
+    opencode
   ];
 }
