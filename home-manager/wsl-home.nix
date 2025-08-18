@@ -55,6 +55,7 @@
   home.packages = with pkgs; [
     cachix
     sshfs
+    uv
   ];
 
   home.sessionVariables = {
