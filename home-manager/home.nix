@@ -97,6 +97,7 @@ in {
     enable = true;
     profiles.default = {
       settings = {
+        "browser.tabs.allow_transparent_browser" = true;
         "zen.widget.linux.transparency" = true;
         "zen.view.compact.should-enable-at-startup" = true;
         "zen.theme.gradient.show-custom-colors" = true;
