@@ -27,7 +27,8 @@
   home.packages = with pkgs; [
     bacon
     # LaTeX Deps
-    tectonic
+    stable.tectonic
+    typst
   ];
 
   programs.zathura = {
