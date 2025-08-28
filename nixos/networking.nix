@@ -22,9 +22,11 @@
 
   users.users.aaryap.extraGroups = ["networkmanager"];
 
-  home-manager.users.aaryap = {
-    home.packages = with pkgs; [
-      networkmanagerapplet
-    ];
-  };
+  home-manager.sharedModules = [
+    {
+      home.packages = with pkgs; [
+        networkmanagerapplet
+      ];
+    }
+  ];
 }
