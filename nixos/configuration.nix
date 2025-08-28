@@ -28,6 +28,7 @@
 
     ./gpu-configuration.nix
     ./boot.nix
+    ./networking.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -108,26 +109,6 @@
     randomizedDelaySec = "45min";
   };
   */
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Enable iwd (better wifi).
-  # networking.wireless.iwd.enable = true;
-  # networking.wireless.iwd.settings = {
-  #   General.EnableNetworkConfiguration = true;
-  #   IPv6.Enabled = true;
-  #   Settings.AutoConnect = true;
-  # };
-  # networking.networkmanager.wifi.backend = "iwd";
-
-  # Enable the firewall
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [22];
-  };
 
   # System clock is local time
   time.hardwareClockInLocalTime = true;
@@ -312,7 +293,7 @@
       isNormalUser = true;
       description = "Aarya Patel";
       # Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["networkmanager" "wheel" "docker" "dialout" "libvirtd"];
+      extraGroups = ["wheel" "docker" "dialout" "libvirtd"];
     };
   };
 

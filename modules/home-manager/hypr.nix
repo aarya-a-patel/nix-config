@@ -205,7 +205,6 @@ in {
     cliphist
     brightnessctl
     wireplumber
-    networkmanagerapplet
   ];
 
   programs.fuzzel.enable = true;
