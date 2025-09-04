@@ -15,11 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
+    # plasma-manager = {
+    #   url = "github:nix-community/plasma-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.home-manager.follows = "home-manager";
+    # };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -50,7 +50,6 @@
     self,
     nixpkgs,
     home-manager,
-    plasma-manager,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -99,7 +98,7 @@
               # useGlobalPkgs = true;
               useUserPackages = true;
               backupFileExtension = "backup";
-              sharedModules = [plasma-manager.homeManagerModules.plasma-manager];
+              # sharedModules = [plasma-manager.homeModules.plasma-manager];
 
               users.aaryap = import ./home-manager/home.nix;
 
