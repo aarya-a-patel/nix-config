@@ -105,6 +105,22 @@
         "ui.background" = {};
       };
     };
+    extraPackages = with pkgs; [
+      # Language server deps
+      lua-language-server
+      rust-analyzer
+      nixd
+      tree-sitter
+      clang-tools
+      texlab
+      clang
+      bacon-ls
+      tinymist
+      tombi
+      yaml-language-server
+      vscode-json-languageserver
+      vscode-css-languageserver
+    ];
   };
 
   home.packages = with pkgs; [
