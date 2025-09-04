@@ -282,6 +282,14 @@ in {
 
   xdg = {
     enable = true;
+    portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      config.common.default = ["gtk"];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
+    };
     /*
     configFile."rofi" = {
       source = ./dotfiles/rofi;

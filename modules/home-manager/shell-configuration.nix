@@ -89,6 +89,20 @@
     languages = {
       language-server = {
         nixd.command = lib.getExe pkgs.nixd;
+        tinymist = {
+          command = lib.getExe pkgs.tinymist;
+          config = {
+            exportPdf = "onType";
+            preview.background = {
+              enabled = true;
+              args = [
+                "--data-plane-host=127.0.0.1:0"
+                "--invert-colors=never"
+                "--open"
+              ];
+            };
+          };
+        };
       };
       language = [
         {
@@ -116,6 +130,7 @@
       clang
       bacon-ls
       tinymist
+      typst
       tombi
       yaml-language-server
       vscode-json-languageserver
