@@ -56,7 +56,7 @@
   miscBinds = [
     "${mod}, mouse_down, workspace, e+1"
     "${mod}, mouse_up, workspace, e-1"
-    "${mod}, L, exec, loginctl lock-session"
+    "${mod}, ESCAPE, exec, loginctl lock-session"
   ];
 in {
   wayland.windowManager.hyprland = {
