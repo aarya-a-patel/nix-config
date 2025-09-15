@@ -9,7 +9,7 @@
       "${mod}, ${n}, workspace, ${n}"
       "${mod} SHIFT, ${n}, movetoworkspace, ${n}"
     ])
-    10);
+    9);
 
   # Vim-style movement
   movementBinds = [
