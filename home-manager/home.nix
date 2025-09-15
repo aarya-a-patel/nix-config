@@ -146,6 +146,7 @@ in {
     stable.input-leap
     papirus-icon-theme
     sshfs
+    gnome-network-displays
   ];
 
   # Enable home-manager and git
