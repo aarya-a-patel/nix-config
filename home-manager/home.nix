@@ -143,7 +143,7 @@ in {
       ];
     })
     ghidra
-    stable.input-leap
+    input-leap
     papirus-icon-theme
     sshfs
     gnome-network-displays

@@ -13,8 +13,11 @@
     gnomeExtensions.pop-shell
     gnomeExtensions.blur-my-shell
     gnomeExtensions.unite
+    gnomeExtensions.appindicator
     gnome-tweaks
   ];
+
+  services.udev.packages = [pkgs.gnome-settings-daemon]; # For system tray icon
 
   # Use Alternative Terminal Emulators
   programs.nautilus-open-any-terminal = {

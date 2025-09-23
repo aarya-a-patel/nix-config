@@ -16,6 +16,7 @@
     outputs.nixosModules.dm
     outputs.nixosModules.cosmic
     outputs.nixosModules.hyprland-env
+    outputs.nixosModules.gnome
     outputs.nixosModules.shell
     outputs.nixosModules.neovim
 
