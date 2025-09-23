@@ -147,6 +147,7 @@ in {
     papirus-icon-theme
     sshfs
     gnome-network-displays
+    libreoffice-qt
   ];
 
   # Enable home-manager and git
