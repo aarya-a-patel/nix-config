@@ -148,6 +148,7 @@ in {
     sshfs
     gnome-network-displays
     libreoffice-qt
+    wike
   ];
 
   # Enable home-manager and git
