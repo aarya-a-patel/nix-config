@@ -149,6 +149,7 @@ in {
     gnome-network-displays
     libreoffice-qt
     wike
+    localsend
   ];
 
   # Enable home-manager and git
