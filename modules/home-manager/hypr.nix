@@ -222,6 +222,11 @@ in {
         font_name = "JetbrainsMono Nerd Font Propo";
         style = "Solid";
       };
+      modules = {
+        left = ["Workspaces"];
+        center = ["WindowTitle"];
+        right = [["Tray" "Clock" "Privacy" "Settings"]];
+      };
     };
   };
 
