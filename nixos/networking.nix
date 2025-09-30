@@ -17,7 +17,7 @@
   # Enable the firewall
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [22];
+    allowedTCPPorts = [22 53317];
   };
 
   users.users.aaryap.extraGroups = ["networkmanager"];

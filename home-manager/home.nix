@@ -150,6 +150,7 @@ in {
     libreoffice-qt
     wike
     localsend
+    drawio
   ];
 
   # Enable home-manager and git
