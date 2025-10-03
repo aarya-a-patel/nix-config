@@ -122,7 +122,7 @@ in {
         "3, horizontal, workspace"
       ];
 
-      misc.force_default_wallpaper = "-1";
+      misc.force_default_wallpaper = "0";
 
       device = [
         {
