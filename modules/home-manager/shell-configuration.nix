@@ -84,7 +84,10 @@
     enable = true;
     settings = {
       theme = lib.mkForce "gruvbox_transparent";
-      editor.line-number = "relative";
+      editor = {
+        line-number = "relative";
+        trim-trailing-whitespace = true;
+      };
     };
     languages = {
       language-server = {
@@ -110,6 +113,14 @@
           auto-format = true;
           formatter.command = lib.getExe pkgs.alejandra;
           language-servers = ["nixd"];
+        }
+        {
+          name = "typst";
+          auto-format = true;
+          formatter = {
+            command = lib.getExe pkgs.typstyle;
+            args = ["--wrap-text"];
+          };
         }
       ];
     };
