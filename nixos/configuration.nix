@@ -16,7 +16,7 @@
     outputs.nixosModules.dm
     outputs.nixosModules.cosmic
     outputs.nixosModules.hyprland-env
-    outputs.nixosModules.gnome
+    # outputs.nixosModules.gnome
     outputs.nixosModules.shell
     outputs.nixosModules.neovim
 
@@ -242,10 +242,6 @@
       qemu = {
         package = pkgs.qemu_kvm;
         swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [
-          pkgs.OVMFFull.fd
-        ];
       };
     };
   };
