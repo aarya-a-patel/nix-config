@@ -48,8 +48,11 @@
     "${mod}, F, togglefloating,"
     "${mod}, P, pseudo,"
     "${mod}, W, togglesplit,"
-    "${mod}, S, togglespecialworkspace, magic"
-    "${mod} SHIFT, S, movetoworkspace, special:magic"
+    "${mod}, U, togglespecialworkspace, magic"
+    "${mod} SHIFT, U, movetoworkspace, special:magic"
+    ", PRINT, exec, hyprshot -m output --clipboard-only"
+    "${mod}, PRINT, exec, hyprshot -m window --clipboard-only"
+    "${mod} SHIFT, S, exec, hyprshot -m region --clipboard-only"
   ];
 
   # Misc binds
@@ -207,6 +210,7 @@ in {
     cliphist
     brightnessctl
     wireplumber
+    hyprshot
   ];
 
   programs.fuzzel.enable = true;
