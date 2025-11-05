@@ -222,6 +222,7 @@
     gcc
     cachix
     gparted
+    podman-compose
     (hiPrio uutils-coreutils-noprefix)
   ];
 
