@@ -178,4 +178,8 @@ in {
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "25.05";
+
+  # Disable manual generation to avoid builtins.toFile warning
+  # See: https://github.com/nix-community/home-manager/issues/7935
+  manual.manpages.enable = false;
 }
