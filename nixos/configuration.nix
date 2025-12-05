@@ -223,7 +223,7 @@
     cachix
     gparted
     podman-compose
-    (hiPrio uutils-coreutils-noprefix)
+    (lib.hiPrio uutils-coreutils-noprefix)
   ];
 
   # memory things

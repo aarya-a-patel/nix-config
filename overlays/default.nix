@@ -30,16 +30,16 @@
   # be accessible through 'pkgs.unstable'
   stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };
 
   zen-browser-package = _final: prev: {
-    zen-browser = inputs.zen-browser.packages.${prev.system};
+    zen-browser = inputs.zen-browser.packages.${prev.stdenv.hostPlatform.system};
   };
 
   bacon-ls-package = _final: prev: {
-    bacon-ls = inputs.bacon-ls.defaultPackage.${prev.system};
+    bacon-ls = inputs.bacon-ls.defaultPackage.${prev.stdenv.hostPlatform.system};
   };
 }

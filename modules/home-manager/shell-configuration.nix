@@ -53,9 +53,15 @@
 
   programs.git = {
     enable = true;
-    delta.enable = true;
-    userEmail = "aarya.patel@gmail.com";
-    userName = "Aarya Patel";
+    settings.user = {
+      email = "aarya.patel@gmail.com";
+      name = "Aarya Patel";
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
   };
 
   programs.eza = {
