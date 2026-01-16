@@ -2,4 +2,5 @@
 # You can build them using 'nix build .#example'
 pkgs: {
   # my-package = pkgs.callPackage ./my-package { };
+  mouseless-click = pkgs.callPackage ./mouseless.nix {};
 }

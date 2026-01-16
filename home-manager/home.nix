@@ -130,7 +130,7 @@ in {
 
   home.packages = with pkgs; [
     vlc
-    vesktop
+    stable.vesktop
     vscode
     zed-editor
     thunderbird
@@ -142,7 +142,7 @@ in {
         temurin-bin-17
       ];
     })
-    ghidra
+    # ghidra
     input-leap
     papirus-icon-theme
     sshfs
@@ -151,6 +151,7 @@ in {
     wike
     localsend
     drawio
+    outputs.packages.${stdenv.hostPlatform.system}.mouseless-click
   ];
 
   # Enable home-manager and git

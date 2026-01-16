@@ -295,6 +295,19 @@
     };
   };
 
+  services.udev.extraRules = ''
+    # Output: Virtual device creation
+    KERNEL=="uinput", GROUP="aaryap", MODE:="0660"
+
+    # Input: Physical device reading
+    KERNEL=="event*", GROUP="aaryap", NAME="input/%k", MODE:="0660"
+  '';
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
