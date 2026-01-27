@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  hyprland-target = "wayland-wm@Hyprland.service"; # "wayland-session@Hyprland.target";
+  hyprland-target = "wayland-wm@hyprland.desktop.service"; # "wayland-session@Hyprland.target";
   mod = "SUPER";
 
   # Generate workspace binds (1-10)

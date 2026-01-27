@@ -151,6 +151,7 @@ in {
     wike
     localsend
     drawio
+    networkmanagerapplet
     outputs.packages.${stdenv.hostPlatform.system}.mouseless-click
   ];
 
