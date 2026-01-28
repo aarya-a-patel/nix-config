@@ -131,7 +131,6 @@ in {
   home.packages = with pkgs; [
     vlc
     stable.vesktop
-    vscode
     zed-editor
     thunderbird
     texlab
@@ -153,7 +152,17 @@ in {
     drawio
     networkmanagerapplet
     outputs.packages.${stdenv.hostPlatform.system}.mouseless-click
+    rocq-core
+    rocqPackages.vsrocq-language-server
   ];
+
+  #vscode
+  programs.vscode = {
+    enable = true;
+    profiles.default.extensions = with pkgs.vscode-extensions; [
+      rocq-prover.vsrocq
+    ];
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
