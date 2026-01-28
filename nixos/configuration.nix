@@ -166,6 +166,13 @@
     excludePackages = [pkgs.xterm];
   };
 
+  # Facial recongition
+  services.howdy = {
+    enable = true;
+    control = "sufficient";
+  };
+  services.linux-enable-ir-emitter.enable = true;
+
   # Use system 76 scheduler
   hardware.system76.enableAll = true;
   hardware.system76.power-daemon.enable = lib.mkForce false;
