@@ -146,7 +146,7 @@
       clang-tools
       texlab
       clang
-      bacon-ls
+      # bacon-ls
       tinymist
       typst
       tombi

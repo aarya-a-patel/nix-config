@@ -20,7 +20,7 @@
       clang-tools
       texlab
       clang
-      bacon-ls
+      # bacon-ls
     ];
   };
 
