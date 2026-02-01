@@ -153,6 +153,7 @@ in {
     networkmanagerapplet
     outputs.packages.${stdenv.hostPlatform.system}.mouseless-click
     rocq-core
+    rocqPackages.stdlib
     rocqPackages.vsrocq-language-server
   ];
 
