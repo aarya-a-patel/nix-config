@@ -4,6 +4,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.nftables.enable = true;
   # networking.networkmanager.wifi.backend = "iwd";
 
   # Enable iwd (better wifi).
