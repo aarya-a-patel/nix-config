@@ -21,15 +21,21 @@
     outputs.nixosModules.neovim
 
     # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-amd-pstate
+    inputs.hardware.nixosModules.common-cpu-amd-zenpower
+    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
 
-    ./gpu-configuration.nix
+    ./disp-configuration.nix
     ./boot.nix
     ./networking.nix
+    ./audio.nix
+    ./net-services.nix
+    ./localization.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -106,27 +112,6 @@
     randomizedDelaySec = "45min";
   };
 
-  # System clock is local time
-  time.hardwareClockInLocalTime = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Indiana/Indianapolis";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
@@ -135,31 +120,6 @@
   ];
 
   programs.steam.enable = true;
-
-  # SSH
-  services.fail2ban.enable = true;
-  services.openssh = {
-    enable = true;
-    ports = [22];
-    startWhenNeeded = true;
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
-      X11Forwarding = true;
-    };
-  };
-  programs.mosh.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    videoDrivers = ["amdgpu"];
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-    excludePackages = [pkgs.xterm];
-  };
 
   # Facial recongition
   services.howdy = {
@@ -189,22 +149,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

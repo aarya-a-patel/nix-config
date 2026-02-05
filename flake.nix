@@ -1,5 +1,5 @@
 {
-  description = "Your new nix config";
+  description = "Aarya's Nix Config";
 
   inputs = {
     # Nixpkgs
@@ -14,6 +14,8 @@
       url = "https://flakehub.com/f/nix-community/home-manager/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hardware.url = "github:NixOS/nixos-hardware/master";
 
     # plasma-manager = {
     #   url = "github:nix-community/plasma-manager";
