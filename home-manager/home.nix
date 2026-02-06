@@ -12,14 +12,11 @@ in {
     # If you want to use modules your own flake exports (from modules/home-manager):
     outputs.homeManagerModules.shell
     outputs.homeManagerModules.nvim
+    outputs.homeManagerModules.browsers
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
     inputs.zen-browser.homeModules.beta
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
-    ./browsers.nix
   ];
 
   nixpkgs = {

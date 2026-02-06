@@ -6,4 +6,5 @@
   shell = import ./shell-configuration.nix;
   nvim = import ./nvim.nix;
   hypr = import ./hypr.nix;
+  browsers = import ./browsers.nix;
 }
