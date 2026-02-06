@@ -12,4 +12,10 @@
   dm = import ./dm-configuration.nix;
   shell = import ./shell-configuration.nix;
   neovim = import ./neovim-configuration.nix;
+  audio = import ./audio.nix;
+  boot = import ./boot.nix;
+  display = import ./disp-configuration.nix;
+  localization = import ./localization.nix;
+  network-services = import ./net-services.nix;
+  networking = import ./networking.nix;
 }

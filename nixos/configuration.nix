@@ -9,37 +9,35 @@
   ...
 }: {
   # You can import other NixOS modules here
-  imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    outputs.nixosModules.asus-touch-numpad-driver
-    outputs.nixosModules.bluetooth
-    outputs.nixosModules.dm
-    outputs.nixosModules.cosmic
-    outputs.nixosModules.hyprland-env
-    # outputs.nixosModules.gnome
-    outputs.nixosModules.shell
-    outputs.nixosModules.neovim
+  imports =
+    (with outputs.nixosModules; [
+      # If you want to use modules your own flake exports (from modules/nixos):
+      asus-touch-numpad-driver
+      bluetooth
+      dm
+      cosmic
+      hyprland-env
+      # outputs.nixosModules.gnome
+      shell
+      neovim
+      display
+      networking
+      network-services
+      audio
+      boot
+      localization
+    ])
+    ++ [
+      # Or modules from other flakes (such as nixos-hardware):
+      inputs.hardware.nixosModules.common-cpu-amd
+      inputs.hardware.nixosModules.common-cpu-amd-pstate
+      inputs.hardware.nixosModules.common-cpu-amd-zenpower
+      inputs.hardware.nixosModules.common-gpu-amd
+      inputs.hardware.nixosModules.common-pc-laptop-ssd
 
-    # Or modules from other flakes (such as nixos-hardware):
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-cpu-amd-pstate
-    inputs.hardware.nixosModules.common-cpu-amd-zenpower
-    inputs.hardware.nixosModules.common-gpu-amd
-    inputs.hardware.nixosModules.common-pc-laptop-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    ./disp-configuration.nix
-    ./boot.nix
-    ./networking.nix
-    ./audio.nix
-    ./net-services.nix
-    ./localization.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
-    ./hardware-configuration.nix
-  ];
+      # Import your generated (nixos-generate-config) hardware configuration
+      ./hardware-configuration.nix
+    ];
 
   nixpkgs = {
     # You can add overlays here
