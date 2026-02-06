@@ -15,11 +15,10 @@
 
   # Enable Hyprland.
   programs = {
-    uwsm.enable = true;
     hyprland = {
       enable = true;
       xwayland.enable = true;
-      withUWSM = true;
+      withUWSM = true; # automatically enables UWSM
     };
     # waybar.enable = true;
     hyprlock.enable = true;
