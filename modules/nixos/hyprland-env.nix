@@ -9,9 +9,16 @@
 
   home-manager.users.aaryap = {
     imports = [
-      outputs.homeManagerModules.hypr
+      (outputs.homeManagerModules.hyprland "wayland-wm@hyprland.desktop.service")
     ];
   };
+
+  # Setup UWSM options
+  home-manager.sharedModules = [
+    {
+      wayland.windowManager.hyprland.systemd.enable = false;
+    }
+  ];
 
   # Enable Hyprland.
   programs = {

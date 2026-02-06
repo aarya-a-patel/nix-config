@@ -1,5 +1,4 @@
-{pkgs, ...}: let
-  hyprland-target = "wayland-wm@hyprland.desktop.service"; # "wayland-session@Hyprland.target";
+hyprland-target: {pkgs, ...}: let
   mod = "SUPER";
 
   # Generate workspace binds (1-10)
@@ -65,7 +64,6 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    systemd.enable = false;
 
     settings = {
       monitor = ",preferred,auto,1";
