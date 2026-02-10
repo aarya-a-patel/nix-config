@@ -49,9 +49,9 @@ hyprland-target: {pkgs, ...}: let
     "${mod}, W, togglesplit,"
     "${mod}, U, togglespecialworkspace, magic"
     "${mod} SHIFT, U, movetoworkspace, special:magic"
-    ", PRINT, exec, hyprshot -m output --clipboard-only"
-    "${mod}, PRINT, exec, hyprshot -m window --clipboard-only"
-    "${mod} SHIFT, S, exec, hyprshot -m region --clipboard-only"
+    ", PRINT, exec, hyprshot -m output"
+    "${mod}, PRINT, exec, hyprshot -m window"
+    "${mod} SHIFT, S, exec, hyprshot -m region"
   ];
 
   # Misc binds
