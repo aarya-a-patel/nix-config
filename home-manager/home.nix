@@ -103,9 +103,7 @@ in {
     localsend
     drawio
     outputs.packages.${stdenv.hostPlatform.system}.mouseless-click
-    rocq-core
-    rocqPackages.stdlib
-    rocqPackages.vsrocq-language-server
+    coq_8_13
   ];
 
   #vscode
