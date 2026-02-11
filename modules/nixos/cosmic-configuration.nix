@@ -8,8 +8,9 @@
   services.desktopManager.cosmic.enable = true;
 
   environment.systemPackages = with pkgs; [
-    cosmic-ext-applet-privacy-indicator
     cosmic-ext-applet-caffeine
+    cosmic-ext-applet-external-monitor-brightness
+    cosmic-ext-applet-privacy-indicator
     cosmic-ext-tweaks
   ];
 }
