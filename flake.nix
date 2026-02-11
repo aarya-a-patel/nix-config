@@ -17,12 +17,6 @@
 
     hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # plasma-manager = {
-    #   url = "github:nix-community/plasma-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.home-manager.follows = "home-manager";
-    # };
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -73,9 +67,6 @@
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-
-    # Formatter for your nix files, available through 'nix fmt'
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     # Your custom packages and modifications, exported as overlays
@@ -86,41 +77,29 @@
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
     homeManagerModules = import ./modules/home-manager;
+    lib = import ./lib {inherit inputs outputs;};
+    cachix = import ./cachix.nix;
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          inputs.stylix.nixosModules.stylix
-          ./cachix.nix
-          # > Our main nixos configuration file <
-          ./nixos/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              # useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "backup";
-              # sharedModules = [plasma-manager.homeModules.plasma-manager];
-
-              users.aaryap = import ./home-manager/home.nix;
-
-              extraSpecialArgs = {inherit inputs outputs;};
-            };
-          }
-          inputs.determinate.nixosModules.default
-        ];
-      };
-    };
+    nixosConfigurations = outputs.lib.mkSystems [
+      {
+        hostname = "aap-zenbook";
+        username = "aaryap";
+        machine = ./machines/asus-zenbook;
+        userhome = ./home-manager/home.nix;
+      }
+    ];
 
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       "aaryap@nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          username = "aaryap";
+        };
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
@@ -128,7 +107,10 @@
       };
       "aarya@AAP-Desktop" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          username = "aarya";
+        };
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/wsl-home.nix

@@ -1,13 +1,14 @@
 {
   pkgs,
   outputs,
+  username,
   ...
 }: {
   imports = [
     ./xdg-configuration.nix
   ];
 
-  home-manager.users.aaryap = {
+  home-manager.users.${username} = {
     imports = [
       (outputs.homeManagerModules.hyprland "wayland-wm@hyprland.desktop.service")
     ];

@@ -6,38 +6,27 @@
   lib,
   config,
   pkgs,
+  username,
+  hostname,
   ...
 }: {
   # You can import other NixOS modules here
-  imports =
-    (with outputs.nixosModules; [
-      # If you want to use modules your own flake exports (from modules/nixos):
-      asus-touch-numpad-driver
-      bluetooth
-      dm
-      cosmic
-      hyprland-env
-      # outputs.nixosModules.gnome
-      shell
-      neovim
-      display
-      networking
-      network-services
-      audio
-      boot
-      localization
-    ])
-    ++ [
-      # Or modules from other flakes (such as nixos-hardware):
-      inputs.hardware.nixosModules.common-cpu-amd
-      inputs.hardware.nixosModules.common-cpu-amd-pstate
-      inputs.hardware.nixosModules.common-cpu-amd-zenpower
-      inputs.hardware.nixosModules.common-gpu-amd
-      inputs.hardware.nixosModules.common-pc-laptop-ssd
-
-      # Import your generated (nixos-generate-config) hardware configuration
-      ./hardware-configuration.nix
-    ];
+  imports = with outputs.nixosModules; [
+    # If you want to use modules your own flake exports (from modules/nixos):
+    bluetooth
+    dm
+    cosmic
+    hyprland-env
+    # outputs.nixosModules.gnome
+    shell
+    neovim
+    display
+    networking
+    network-services
+    audio
+    boot
+    localization
+  ];
 
   nixpkgs = {
     # You can add overlays here
@@ -78,7 +67,7 @@
       trusted-users = [
         "root"
         "@wheel"
-        "aaryap"
+        username
       ];
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
@@ -119,13 +108,6 @@
 
   programs.steam.enable = true;
 
-  # Facial recongition
-  services.howdy = {
-    enable = true;
-    control = "sufficient";
-  };
-  services.linux-enable-ir-emitter.enable = true;
-
   # Use system 76 scheduler
   hardware.system76.enableAll = true;
   hardware.system76.power-daemon.enable = lib.mkForce false;
@@ -140,10 +122,6 @@
     });
   '';
   */
-
-  # enable hibernation?
-  security.protectKernelImage = false;
-  boot.resumeDevice = "/dev/nvme0n1p7";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -177,13 +155,6 @@
   ];
 
   # memory things
-  swapDevices = [
-    {
-      device = "/dev/nvme0n1p7";
-      # size = 16*1024;
-      priority = 1;
-    }
-  ];
   services.earlyoom.enable = true;
   zramSwap.enable = true;
 
@@ -230,39 +201,29 @@
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = hostname; # Define your hostname.
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
-  users.users = {
-    aaryap = {
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
-      initialPassword = "";
-      isNormalUser = true;
-      description = "Aarya Patel";
-      # Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel" "docker" "dialout" "libvirtd"];
-    };
+  users.users.${username} = {
+    # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
+    # Be sure to change it (using passwd) after rebooting!
+    initialPassword = "";
+    isNormalUser = true;
+    description = "Aarya Patel";
+    # Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
+    extraGroups = ["wheel" "docker" "dialout" "libvirtd"];
   };
 
   services.udev.extraRules = ''
     # Output: Virtual device creation
-    KERNEL=="uinput", GROUP="aaryap", MODE:="0660"
+    KERNEL=="uinput", GROUP="${username}", MODE:="0660"
 
     # Input: Physical device reading
-    KERNEL=="event*", GROUP="aaryap", NAME="input/%k", MODE:="0660"
+    KERNEL=="event*", GROUP="${username}", NAME="input/%k", MODE:="0660"
   '';
 
   programs.appimage = {
     enable = true;
     binfmt = true;
   };
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
 }

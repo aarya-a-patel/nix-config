@@ -18,4 +18,6 @@
   localization = import ./localization.nix;
   network-services = import ./net-services.nix;
   networking = import ./networking.nix;
+  common = import ./common.nix;
+  facial-recognition = import ./facial-recognition.nix;
 }

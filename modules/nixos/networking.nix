@@ -1,4 +1,8 @@
-{pkgs, ...}
+{
+  pkgs,
+  username,
+  ...
+}
 : {
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
@@ -21,7 +25,7 @@
     allowedTCPPorts = [22 53317];
   };
 
-  users.users.aaryap.extraGroups = ["networkmanager"];
+  users.users.${username}.extraGroups = ["networkmanager"];
 
   home-manager.sharedModules = [
     {
