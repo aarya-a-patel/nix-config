@@ -150,6 +150,7 @@
     cachix
     gparted
     podman-compose
+    mission-center
     (lib.hiPrio uutils-coreutils-noprefix)
   ];
 
