@@ -9,6 +9,7 @@
     darkreader
     onetab
     one-click-wayback
+    indie-wiki-buddy
   ];
 in {
   programs.firefox = {
@@ -25,7 +26,16 @@ in {
         "zen.theme.gradient.show-custom-colors" = true;
         "zen.view.grey-out-inactive-windows" = false;
       };
-      extensions.packages = firefox-extensions;
+      extensions.packages =
+        firefox-extensions
+        ++ (with pkgs.nur.repos.rycee.firefox-addons; [
+          transparent-zen
+          # zen-internet
+        ]);
+      mods = [
+        "906c6915-5677-48ff-9bfc-096a02a72379" # Floating Status Bar
+        "a5f6a231-e3c8-4ce8-8a8e-3e93efd6adec" # Cleaned URL Bar
+      ];
     };
     policies = {
       AutofillAddressEnabled = true;
