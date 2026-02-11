@@ -18,6 +18,8 @@
       ./hardware-configuration.nix
     ];
 
+  services.xserver.videoDrivers = ["amdgpu"];
+
   # enable hibernation
   security.protectKernelImage = false;
   boot.resumeDevice = "/dev/nvme0n1p7";

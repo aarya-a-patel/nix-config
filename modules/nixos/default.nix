@@ -20,4 +20,5 @@
   networking = import ./networking.nix;
   common = import ./common.nix;
   facial-recognition = import ./facial-recognition.nix;
+  nvidia-gpu = import ./nvidia-gpu.nix;
 }

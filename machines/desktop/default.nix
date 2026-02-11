@@ -1,16 +1,20 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{inputs, ...}: {
+{
+  inputs,
+  outputs,
+  ...
+}: {
   imports =
     (with inputs.hardware.nixosModules; [
       common-cpu-amd
       common-cpu-amd-pstate
       common-cpu-amd-zenpower
-      common-gpu-nvidia
       common-pc-ssd
     ])
     ++ [
+      outputs.nixosModules.nvidia-gpu
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
