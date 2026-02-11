@@ -22,12 +22,12 @@
 
   # enable hibernation
   security.protectKernelImage = false;
-  boot.resumeDevice = "/dev/nvme0n1p7";
+  boot.resumeDevice = "/dev/disk/by-label/swap";
 
   # memory
   swapDevices = [
     {
-      device = "/dev/nvme0n1p7";
+      device = "/dev/disk/by-label/swap";
       # size = 16*1024;
       priority = 1;
     }
