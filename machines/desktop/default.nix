@@ -19,6 +19,10 @@
       ./hardware-configuration.nix
     ];
 
+  # enable hibernation
+  security.protectKernelImage = false;
+  boot.resumeDevice = "/dev/disk/by-label/swap";
+
   # memory
   swapDevices = [
     {
