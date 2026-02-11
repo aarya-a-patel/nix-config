@@ -89,6 +89,12 @@
         machine = ./machines/asus-zenbook;
         userhome = ./home-manager/home.nix;
       }
+      {
+        hostname = "aap-nix-desktop";
+        username = "aaryap";
+        machine = ./machines/desktop;
+        userhome = ./home-manager/home.nix;
+      }
     ];
 
     # Standalone home-manager configuration entrypoint
