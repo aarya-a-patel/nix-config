@@ -113,6 +113,7 @@ in {
     enable = true;
     profiles.default.extensions = with pkgs.vscode-extensions; [
       rocq-prover.vsrocq
+      asvetliakov.vscode-neovim
     ];
   };
 
