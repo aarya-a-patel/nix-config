@@ -106,7 +106,6 @@ in {
     localsend
     drawio
     outputs.packages.${stdenv.hostPlatform.system}.mouseless-click
-    coq_8_13
   ];
 
   #vscode
