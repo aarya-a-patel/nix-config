@@ -17,6 +17,7 @@ in {
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
     inputs.zen-browser.homeModules.beta
+    inputs.wallpaperengine.homeManagerModules.default
   ];
 
   nixpkgs = {
@@ -49,6 +50,8 @@ in {
     username = "aaryap";
     homeDirectory = "/home/aaryap";
   };
+
+  services.simple-linux-wallpaperengine.enable = true;
 
   # Add stuff for your user as you see fit:
   programs.wezterm = {

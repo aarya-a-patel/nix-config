@@ -43,6 +43,9 @@
       url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Not going to follow main nixpkgs because builds take a while
+    wallpaperengine.url = "github:aarya-a-patel/nixos-linux-wallpaperengine";
   };
 
   outputs = {

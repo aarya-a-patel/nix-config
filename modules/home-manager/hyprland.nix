@@ -157,7 +157,22 @@ in {
     };
   };
 
-  services.hyprpolkitagent.enable = true;
+  # services.hyprpolkitagent.enable = true;
+  systemd.user.services.hyprpolkitagent = {
+    Unit = {
+      Description = "Hyprland PolicyKit Agent";
+      PartOf = [hyprland-target];
+      After = [hyprland-target];
+    };
+
+    Install = {
+      WantedBy = [hyprland-target];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+    };
+  };
 
   services.hypridle = {
     enable = true;
