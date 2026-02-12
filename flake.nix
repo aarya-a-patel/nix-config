@@ -44,8 +44,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Not going to follow main nixpkgs because builds take a while
-    wallpaperengine.url = "github:aarya-a-patel/nixos-linux-wallpaperengine";
+    wallpaperengine = {
+      url = "github:aarya-a-patel/simple-linux-wallpaperengine-gui/config";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

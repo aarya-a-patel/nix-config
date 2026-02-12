@@ -487,20 +487,6 @@
         "url": "https://flakehub.com/f/NixOS/nixpkgs/0.1"
       }
     },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1770562336,
-        "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
-        "rev": "d6c71932130818840fc8fe9509cf50be8c64634f",
-        "revCount": 942779,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.942779%2Brev-d6c71932130818840fc8fe9509cf50be8c64634f/019c3fb4-003d-710c-9b72-1d2bb1b28de3/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/NixOS/nixpkgs/0.1"
-      }
-    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -741,20 +727,23 @@
     },
     "wallpaperengine": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1770870928,
-        "narHash": "sha256-CtlkrXz0eVi/68WhK8oeaHFwiuwEzVXggrMV/U1DDek=",
+        "lastModified": 1770874060,
+        "narHash": "sha256-8Hd/V27e1lsSGDIk8iQFl6Wa0gIELQRu9J4E88DxjTk=",
         "owner": "aarya-a-patel",
-        "repo": "nixos-linux-wallpaperengine",
-        "rev": "4b408b5b83a56144a6367007b152527127901cd1",
+        "repo": "simple-linux-wallpaperengine-gui",
+        "rev": "7b4d889a988e1cf3d5f8bf9d5158e96465664954",
         "type": "github"
       },
       "original": {
         "owner": "aarya-a-patel",
-        "repo": "nixos-linux-wallpaperengine",
+        "ref": "config",
+        "repo": "simple-linux-wallpaperengine-gui",
         "type": "github"
       }
     },
