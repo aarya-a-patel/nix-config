@@ -112,16 +112,8 @@
   hardware.system76.enableAll = true;
   hardware.system76.power-daemon.enable = lib.mkForce false;
   services.power-profiles-daemon.enable = lib.mkForce true;
-  /*
+
   security.polkit.enable = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (action.id == "com.system76.PowerDaemon" && subject.isInGroup("wheel")) {
-        return polkit.Result.YES;
-      }
-    });
-  '';
-  */
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;

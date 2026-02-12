@@ -13,4 +13,12 @@
     cosmic-ext-applet-privacy-indicator
     cosmic-ext-tweaks
   ];
+
+  # Disable cosmic osd for now (not working)
+  environment.cosmic.excludePackages = [pkgs.cosmic-osd];
+  home-manager.sharedModules = [
+    ({...}: {
+      services.polkit-gnome.enable = true;
+    })
+  ];
 }
