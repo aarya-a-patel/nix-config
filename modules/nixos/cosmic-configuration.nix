@@ -15,6 +15,7 @@
   ];
 
   # Disable cosmic osd for now (not working)
+  services.desktopManager.cosmic.showExcludedPkgsWarning = false; # cosmic-osd is considered essential, but we bring our own polkit agent.
   environment.cosmic.excludePackages = [pkgs.cosmic-osd];
   home-manager.sharedModules = [
     ({...}: {
