@@ -12,6 +12,14 @@
     enable = true;
   };
 
+  boot.kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1"];
+
+  systemd.services."systemd-suspend" = {
+    serviceConfig = {
+      Environment = ''"SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"'';
+    };
+  };
+
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;

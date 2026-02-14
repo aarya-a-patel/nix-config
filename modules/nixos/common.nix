@@ -88,7 +88,9 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
+  # Firmware
   hardware.enableAllFirmware = true;
+  services.fwupd.enable = true;
 
   # Auto upgrade
   system.autoUpgrade = {
@@ -146,6 +148,9 @@
     gparted
     podman-compose
     mission-center
+    firmware-updater
+    usbutils
+    pciutils
     (lib.hiPrio uutils-coreutils-noprefix)
   ];
 
