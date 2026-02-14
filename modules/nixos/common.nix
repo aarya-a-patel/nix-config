@@ -88,6 +88,8 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
+  hardware.enableAllFirmware = true;
+
   # Auto upgrade
   system.autoUpgrade = {
     enable = true;
