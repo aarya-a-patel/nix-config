@@ -733,11 +733,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1770874060,
-        "narHash": "sha256-8Hd/V27e1lsSGDIk8iQFl6Wa0gIELQRu9J4E88DxjTk=",
+        "lastModified": 1771094920,
+        "narHash": "sha256-/lLPaUl/d2FahrfFBH0qKFLmdHDpD7jKWKQdo8jTy/Q=",
         "owner": "aarya-a-patel",
         "repo": "simple-linux-wallpaperengine-gui",
-        "rev": "7b4d889a988e1cf3d5f8bf9d5158e96465664954",
+        "rev": "355ec41d0ee03846af206c79bcb512fa9e398b27",
         "type": "github"
       },
       "original": {
