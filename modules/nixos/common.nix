@@ -127,6 +127,7 @@
     dockerCompat = true; # Enables Docker-compatible socket at /var/run/docker.sock
     # defaultNetwork.settings.dns_enabled = true;  # Optional but useful for networking
   };
+  virtualisation.containers.registries.search = ["docker.io"]; # Disable annoying "Please select image to use" prompt
 
   # Enable waydroid
   virtualisation.waydroid = {
