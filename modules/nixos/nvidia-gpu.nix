@@ -3,7 +3,9 @@
   config,
   ...
 }: {
-  services.xserver.videoDrivers = ["nvidia"];
+  imports = [
+    inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
+  ];
 
   # Enable OpenGL
   hardware.graphics = {
