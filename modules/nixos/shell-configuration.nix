@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  username,
+  lib,
+  ...
+}: {
   # Enable Zsh
   programs.zsh = {
     enable = true;
@@ -22,7 +27,7 @@
   # enable nh
   programs.nh = {
     enable = true;
-    flake = "/etc/nixos";
+    flake = lib.mkDefault "/home/${username}/repos/nix-config";
   };
 
   environment.etc = {

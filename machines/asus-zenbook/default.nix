@@ -18,6 +18,8 @@
       ./hardware-configuration.nix
     ];
 
+  programs.nh.flake = "/etc/nixos";
+
   services.xserver.videoDrivers = ["amdgpu"];
 
   # enable hibernation
