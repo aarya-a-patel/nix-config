@@ -45,7 +45,7 @@
     };
 
     wallpaperengine = {
-      url = "github:aarya-a-patel/simple-linux-wallpaperengine-gui/config";
+      url = "github:aarya-a-patel/simple-linux-wallpaperengine-gui";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
