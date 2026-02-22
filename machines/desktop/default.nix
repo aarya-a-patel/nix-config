@@ -15,6 +15,7 @@
     ])
     ++ [
       outputs.nixosModules.nvidia-gpu
+      outputs.nixosModules.openclaw-container
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
@@ -31,6 +32,11 @@
       priority = 1;
     }
   ];
+
+  services.openclawContainer = {
+    enable = true;
+    username = "aaryap";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

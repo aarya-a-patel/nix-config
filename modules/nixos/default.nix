@@ -21,4 +21,5 @@
   common = import ./common.nix;
   facial-recognition = import ./facial-recognition.nix;
   nvidia-gpu = import ./nvidia-gpu.nix;
+  openclaw-container = import ../openclaw-container.nix;
 }
