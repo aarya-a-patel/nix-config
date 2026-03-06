@@ -55,7 +55,7 @@
 
   services.ollama = {
     enable = true;
-    package = pkgs.ollama-cuda;
+    package = pkgs.stable.ollama-cuda;
   };
 
   environment.systemPackages = [pkgs.opencode]; # In case we want to use a local model

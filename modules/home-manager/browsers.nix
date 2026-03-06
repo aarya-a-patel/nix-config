@@ -18,6 +18,7 @@ in {
   };
   programs.zen-browser = {
     enable = true;
+    suppressXdgMigrationWarning = true;
     profiles.default = {
       settings = {
         "browser.tabs.allow_transparent_browser" = true;

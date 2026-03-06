@@ -17,7 +17,13 @@
   # Setup UWSM options
   home-manager.sharedModules = [
     {
-      wayland.windowManager.hyprland.systemd.enable = false;
+      wayland.windowManager.hyprland = {
+        systemd.enable = false;
+
+        # Package and portal are configured via nixos
+        package = null;
+        portalPackage = null;
+      };
     }
   ];
 

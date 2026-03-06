@@ -7,6 +7,17 @@
   # services.displayManager.cosmic-greeter.enable = true;
   services.desktopManager.cosmic.enable = true;
 
+  # Screen sharing portal for COSMIC
+  xdg.portal = {
+    config = {
+      cosmic.default = ["cosmic" "gtk"];
+      COSMIC.default = ["cosmic" "gtk"];
+    };
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-cosmic
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     cosmic-ext-applet-caffeine
     cosmic-ext-applet-external-monitor-brightness
