@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   # Default terminal
   xdg.terminal-exec = {
     enable = true;
@@ -18,4 +22,11 @@
       xdg-desktop-portal-gtk
     ];
   };
+
+  # Ensure home-manager isn't messing with portal config set by the OS.
+  home-manager.sharedModules = [
+    {
+      xdg.portal.enable = lib.mkForce false;
+    }
+  ];
 }
