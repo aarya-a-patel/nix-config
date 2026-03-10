@@ -1,9 +1,14 @@
 {
+  inputs,
   pkgs,
   config,
   lib,
   ...
 }: {
+  imports = [
+    inputs.nix-index-database.homeModules.default
+  ];
+
   home.shellAliases = {
     ls = "eza";
     cd = "z";
@@ -156,6 +161,12 @@
     ];
   };
 
+  programs.nix-index = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+
   home.packages = with pkgs; [
     fd
     ripgrep
@@ -167,6 +178,7 @@
     nix-fast-build
     nix-tree
     just
+    comma
     codex
   ];
 }

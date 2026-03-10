@@ -9,6 +9,10 @@
     nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     # Also see the 'stable-packages' overlay at 'overlays/default.nix'.
 
+    # nix-index
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     # Home manager
     home-manager = {
       url = "https://flakehub.com/f/nix-community/home-manager/0.1";
