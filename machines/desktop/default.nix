@@ -19,6 +19,14 @@
       ./hardware-configuration.nix
     ];
 
+  nixpkgs.hostPlatform = {
+    gcc.arch = "znver2";
+    gcc.tune = "znver2";
+    system = "x86_64-linux";
+  };
+
+  nix.settings.system-features = ["gccarch-znver2"];
+
   # enable hibernation
   security.protectKernelImage = false;
   boot.resumeDevice = "/dev/disk/by-label/swap";
