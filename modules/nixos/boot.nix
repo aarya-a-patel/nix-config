@@ -1,4 +1,12 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  nixpkgs.overlays = [
+    inputs.nix-cachyos-kernel.overlays.pinned
+  ];
+
   boot = {
     # Bootloader.
     bootspec.enable = true;
@@ -16,7 +24,7 @@
     initrd.verbose = false;
     consoleLogLevel = 0;
     kernelParams = ["quiet" "udev.log_level=0"];
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxKernel.packagesFor pkgs.cachyosKernels.linux-cachyos-latest-x86_64-v4;
 
     # Enable NTFS
     supportedFilesystems.ntfs = true;

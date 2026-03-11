@@ -52,6 +52,9 @@
       url = "github:aarya-a-patel/simple-linux-wallpaperengine-gui";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # cachy kernel
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs = {
