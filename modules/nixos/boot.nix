@@ -4,9 +4,9 @@
     bootspec.enable = true;
     loader.systemd-boot = {
       enable = true;
-      extraInstallCommands = ''
-        echo "default @saved" >> /boot/loader/loader.conf
-      '';
+      # extraInstallCommands = ''
+      #   echo "default @saved" >> /boot/loader/loader.conf
+      # '';
     };
     loader.efi.canTouchEfiVariables = true;
     plymouth = {
