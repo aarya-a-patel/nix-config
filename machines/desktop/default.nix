@@ -19,11 +19,11 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.hostPlatform = {
-    gcc.arch = "znver2";
-    gcc.tune = "znver2";
-    system = "x86_64-linux";
-  };
+  # nixpkgs.hostPlatform = {
+  #   gcc.arch = "znver2";
+  #   gcc.tune = "znver2";
+  #   system = "x86_64-linux";
+  # };
 
   nix.settings.system-features = ["gccarch-znver2"];
 
