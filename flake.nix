@@ -13,6 +13,10 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
+    # gaming and heavy workload optimization
+    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
+
     # Home manager
     home-manager = {
       url = "https://flakehub.com/f/nix-community/home-manager/0.1";

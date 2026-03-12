@@ -11,22 +11,26 @@
   ...
 }: {
   # You can import other NixOS modules here
-  imports = with outputs.nixosModules; [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    bluetooth
-    dm
-    cosmic
-    hyprland-env
-    # outputs.nixosModules.gnome
-    shell
-    neovim
-    display
-    networking
-    network-services
-    audio
-    boot
-    localization
-  ];
+  imports =
+    (with outputs.nixosModules; [
+      # If you want to use modules your own flake exports (from modules/nixos):
+      bluetooth
+      dm
+      cosmic
+      hyprland-env
+      # outputs.nixosModules.gnome
+      shell
+      neovim
+      display
+      networking
+      network-services
+      audio
+      boot
+      localization
+    ])
+    ++ [
+      inputs.nix-gaming.nixosModules.platformOptimizations
+    ];
 
   nixpkgs = {
     # You can add overlays here
@@ -110,7 +114,10 @@
     nerd-fonts.droid-sans-mono
   ];
 
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    platformOptimizations.enable = true;
+  };
 
   # Use system 76 scheduler
   hardware.system76.enableAll = true;
