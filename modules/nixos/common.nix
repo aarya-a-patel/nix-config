@@ -175,8 +175,6 @@
     };
   };
   programs.virt-manager.enable = true;
-  #Temporary fix until #496839 is merged
-  systemd.services.virt-secret-init-encryption.enable = false;
 
   programs.nix-ld.enable = true;
 
