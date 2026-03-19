@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  pkgs,
   ...
 }: {
   imports =
@@ -42,6 +43,11 @@
       priority = 1;
     }
   ];
+
+  services.ollama = {
+    enable = true;
+    package = pkgs.stable.ollama;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
