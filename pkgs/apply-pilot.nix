@@ -1,27 +1,28 @@
 {
   lib,
-  python3,
   python3Packages,
   nodejs,
   chromium,
+  playwright-driver,
   makeWrapper,
+  playwrightDriverBrowsers ? playwright-driver.browsers,
 }: let
-  python-jobspy = python3Packages.buildPythonPackage rec {
+  py = python3Packages;
+
+  python-jobspy = py.buildPythonPackage rec {
     pname = "python-jobspy";
     version = "1.1.82";
     pyproject = true;
 
-    src = python3Packages.fetchPypi {
+    src = py.fetchPypi {
       pname = "python_jobspy";
       inherit version;
       hash = "sha256-Mu+0htpetg3FSldLtKH7ZoOP3udWmaemAarnY2N9yOo=";
     };
 
-    build-system = with python3Packages; [
-      poetry-core
-    ];
+    build-system = [py.poetry-core];
 
-    dependencies = with python3Packages; [
+    dependencies = with py; [
       requests
       beautifulsoup4
       pandas
@@ -42,25 +43,21 @@
     doCheck = false;
   };
 in
-  python3Packages.buildPythonApplication rec {
+  py.buildPythonApplication rec {
     pname = "applypilot";
     version = "0.3.0";
     pyproject = true;
 
-    src = python3Packages.fetchPypi {
+    src = py.fetchPypi {
       inherit pname version;
       hash = "sha256-KsTaZoHtD8jGM/VMNWXdL6JRA5lLDbNBhwDSqHlaVQ4=";
     };
 
-    build-system = with python3Packages; [
-      hatchling
-    ];
+    build-system = [py.hatchling];
 
-    nativeBuildInputs = [
-      makeWrapper
-    ];
+    nativeBuildInputs = [makeWrapper];
 
-    dependencies = with python3Packages; [
+    dependencies = with py; [
       typer
       rich
       httpx
@@ -78,7 +75,9 @@ in
     postFixup = ''
       wrapProgram $out/bin/applypilot \
         --prefix PATH : ${lib.makeBinPath [nodejs chromium]} \
-        --set-default CHROME_PATH ${lib.getExe chromium}
+        --set-default CHROME_PATH ${lib.getExe chromium} \
+        --set-default PLAYWRIGHT_BROWSERS_PATH ${playwrightDriverBrowsers} \
+        --set-default PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS true
     '';
 
     meta = with lib; {
