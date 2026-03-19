@@ -106,6 +106,7 @@ in {
     localsend
     drawio
     outputs.packages.${stdenv.hostPlatform.system}.mouseless-click
+    outputs.packages.${stdenv.hostPlatform.system}.apply-pilot
   ];
 
   #vscode
