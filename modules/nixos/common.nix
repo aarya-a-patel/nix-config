@@ -139,6 +139,7 @@
     # defaultNetwork.settings.dns_enabled = true;  # Optional but useful for networking
   };
   virtualisation.containers.registries.search = ["docker.io"]; # Disable annoying "Please select image to use" prompt
+  virtualisation.containerd.enable = true;
 
   # Enable waydroid
   virtualisation.waydroid = {
@@ -153,7 +154,9 @@
     gcc
     cachix
     gparted
+    nerdctl
     podman-compose
+    outputs.packages.${stdenv.hostPlatform.system}.nydusPkgs.all
     mission-center
     firmware-updater
     usbutils
