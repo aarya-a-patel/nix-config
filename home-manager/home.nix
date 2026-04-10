@@ -51,7 +51,7 @@ in {
     homeDirectory = "/home/aaryap";
   };
 
-  programs.simple-wallpaper-engine.enable = true;
+  programs.simple-wallpaper-engine.enable = false;
 
   # Add stuff for your user as you see fit:
   programs.wezterm = {

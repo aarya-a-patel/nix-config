@@ -58,12 +58,10 @@
     dunst
   ];
 
-  # xdg.portal = {
-  #   config = {
-  #     hyprland.default = ["gtk" "hyprland"];
-  #   };
-  #   extraPortals = [
-  #     pkgs.xdg-desktop-portal-hyprland
-  #   ];
-  # };
+  xdg.portal = {
+    config.hyprland.default = ["hyprland" "gtk"];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+  };
 }
