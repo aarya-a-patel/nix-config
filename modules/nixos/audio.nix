@@ -11,6 +11,19 @@
       };
       pulse.enable = true;
       wireplumber.enable = true;
+      extraConfig = {
+        pipewire."92-screen-share-stability" = {
+          "context.properties" = {
+            # Give screen capture and browser audio a little more scheduling
+            # headroom to reduce underruns during screen sharing.
+            "default.clock.rate" = 48000;
+            "default.clock.quantum" = 1024;
+            "default.clock.min-quantum" = 512;
+            "default.clock.max-quantum" = 2048;
+            "default.clock.allowed-rates" = [48000];
+          };
+        };
+      };
       # If you want to use JACK applications, uncomment this
       #jack.enable = true;
 
