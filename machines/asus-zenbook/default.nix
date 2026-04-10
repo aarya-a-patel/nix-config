@@ -26,6 +26,10 @@
   # };
 
   nix.settings.system-features = ["gccarch-znver2"];
+  aaryap.boot = {
+    useCachyKernel = true;
+    cachyKernelVariant = "linuxPackages-cachyos-lts-x86_64-v3";
+  };
 
   programs.nh.flake = "/etc/nixos";
 
