@@ -167,6 +167,13 @@
     enableZshIntegration = true;
   };
 
+  programs.btop = {
+    enable = true;
+    settings = {
+      vim_mode = true;
+    };
+  };
+
   home.packages = with pkgs; [
     fd
     ripgrep

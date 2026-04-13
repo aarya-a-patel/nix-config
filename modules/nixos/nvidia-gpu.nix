@@ -2,11 +2,16 @@
   inputs,
   config,
   pkgs,
+  username,
   ...
 }: {
   imports = [
     inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
   ];
+
+  home-manager.users.${username} = {
+    programs.btop.package = pkgs.btop-cuda;
+  };
 
   # Enable OpenGL
   hardware.graphics = {
