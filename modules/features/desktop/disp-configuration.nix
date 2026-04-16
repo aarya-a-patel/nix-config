@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.display = {pkgs, ...}: {
+  config.flake.modules.nixos.display = {pkgs, ...}: {
     services.xserver = {
       enable = true;
       excludePackages = [pkgs.xterm];

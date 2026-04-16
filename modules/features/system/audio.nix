@@ -26,5 +26,5 @@
     };
   };
 in {
-  config.repo.nixosModules.audio = module;
+  config.flake.modules.nixos.audio = module;
 }

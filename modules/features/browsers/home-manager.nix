@@ -74,5 +74,5 @@
     };
   };
 in {
-  config.repo.homeManagerModules.browsers = module;
+  config.flake.modules.homeManager.browsers = module;
 }

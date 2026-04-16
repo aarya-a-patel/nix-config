@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.dm = {...}: {
+  config.flake.modules.nixos.dm = {...}: {
     services.displayManager.cosmic-greeter.enable = true;
   };
 }

@@ -115,10 +115,13 @@
       }
     ) {};
 in {
-  config.repo.packageBuilders = {
-    nydusPkgs = packageSet;
-    nydus = pkgs: (packageSet pkgs).nydus;
-    nydus-snapshotter = pkgs: (packageSet pkgs).nydus-snapshotter;
-    nydus-bundle = pkgs: (packageSet pkgs).all;
+  config.perSystem = {pkgs, ...}: let
+    packages = packageSet pkgs;
+  in {
+    packages = {
+      nydus = packages.nydus;
+      nydus-snapshotter = packages.nydus-snapshotter;
+      nydus-bundle = packages.all;
+    };
   };
 }

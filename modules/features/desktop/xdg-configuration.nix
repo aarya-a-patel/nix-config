@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.xdg = {
+  config.flake.modules.nixos.xdg = {
     pkgs,
     lib,
     ...

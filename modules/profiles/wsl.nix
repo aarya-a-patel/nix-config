@@ -1,18 +1,15 @@
 {config, ...}: let
-  top = config.repo;
+  flake = config.flake;
 in {
-  config.repo.homeProfiles.wsl = {pkgs, ...}: {
+  config.flake.modules.homeManager.wsl = {pkgs, ...}: {
     imports = [
-      top.homeManagerModules.shell
-      top.homeManagerModules.nvim
+      flake.modules.homeManager.shell
+      flake.modules.homeManager.nvim
     ];
 
     nixpkgs = {
       overlays = [
-        top.overlays.additions
-        top.overlays.modifications
-        top.overlays.stable-packages
-        top.overlays.wrapper-programs
+        flake.overlays.stable-packages
       ];
       config.allowUnfree = true;
     };
@@ -35,7 +32,7 @@ in {
     home.stateVersion = "24.05";
   };
 
-  config.repo.standaloneHomes."aarya@AAP-Desktop" = {
+  config.flake.homeConfigurations."aarya@AAP-Desktop" = flake.lib.mkHomeConfiguration {
     system = "x86_64-linux";
     profile = "wsl";
   };

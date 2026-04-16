@@ -1,9 +1,9 @@
 {config, ...}: let
-  top = config.repo;
+  flake = config.flake;
 in {
-  config.repo.nixosModules.kde = {pkgs, ...}: {
+  config.flake.modules.nixos.kde = {pkgs, ...}: {
     imports = [
-      top.nixosModules.xdg
+      flake.modules.nixos.xdg
     ];
 
     services.desktopManager.plasma6.enable = true;

@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.shell = {
+  config.flake.modules.nixos.shell = {
     pkgs,
     lib,
     ...

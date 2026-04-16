@@ -16,5 +16,7 @@
         }
     ) {};
 in {
-  config.repo.packageBuilders.mouseless-click = package;
+  config.perSystem = {pkgs, ...}: {
+    packages.mouseless-click = package pkgs;
+  };
 }

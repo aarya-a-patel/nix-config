@@ -1,14 +1,14 @@
 {config, ...}: let
-  top = config.repo;
+  flake = config.flake;
 in {
-  config.repo.nixosModules.hyprland-env = {pkgs, ...}: {
+  config.flake.modules.nixos.hyprland-env = {pkgs, ...}: {
     imports = [
-      top.nixosModules.xdg
+      flake.modules.nixos.xdg
     ];
 
     home-manager.users.aaryap = {
       imports = [
-        (top.homeManagerModules.hyprland "wayland-wm@hyprland.desktop.service")
+        flake.modules.homeManager.hyprland
       ];
     };
 

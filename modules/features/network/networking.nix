@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.networking = {pkgs, ...}: {
+  config.flake.modules.nixos.networking = {pkgs, ...}: {
     networking.wireless.enable = true;
     networking.networkmanager.enable = true;
     networking.nftables.enable = true;

@@ -4,16 +4,18 @@
   lib,
   ...
 }: let
-  top = config.repo;
+  flake = config.flake;
 in {
-  config.repo.nixosModules.common = {
+  config.flake.modules.nixos.common = {
     config,
     lib,
     pkgs,
     ...
-  }: {
+  }: let
+    packages = flake.packages.${pkgs.stdenv.hostPlatform.system};
+  in {
     imports =
-      (with top.nixosModules; [
+      (with flake.modules.nixos; [
         bluetooth
         dm
         cosmic
@@ -33,10 +35,7 @@ in {
 
     nixpkgs = {
       overlays = [
-        top.overlays.additions
-        top.overlays.modifications
-        top.overlays.stable-packages
-        top.overlays.wrapper-programs
+        flake.overlays.stable-packages
       ];
       config.allowUnfree = true;
     };
@@ -112,7 +111,7 @@ in {
       gparted
       nerdctl
       podman-compose
-      nydusPkgs.all
+      packages.nydus-bundle
       mission-center
       firmware-updater
       usbutils

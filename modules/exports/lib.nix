@@ -1,49 +1,78 @@
 {
   config,
   inputs,
+  lib,
   ...
 }: let
-  outputs = config.flake;
+  flake = config.flake;
 in {
-  config.flake.lib = rec {
-    mapListToAttrs = f: arr: builtins.listToAttrs (map f arr);
+  config.flake = {
+    cachix = import ../../cachix.nix;
+    nixosModules = flake.modules.nixos;
+    homeModules = lib.filterAttrs (name: _: !(builtins.elem name ["aaryap" "wsl"])) flake.modules.homeManager;
 
-    mkSystem = {
-      machine,
-      hostname,
-      userhome,
-      username,
-    }:
-      inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs hostname username;};
-        modules = [
-          outputs.cachix
-          inputs.stylix.nixosModules.stylix
-          outputs.nixosModules.common
-          machine
-          inputs.home-manager.nixosModules.home-manager
-          {
-            nix.settings.substituters = ["https://attic.xuyh0120.win/lantian"];
-            nix.settings.trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
+    lib = {
+      mkNixosConfiguration = {
+        hostname,
+        username,
+        homeProfile,
+        system ? "x86_64-linux",
+        modules ? [],
+        specialArgs ? {},
+      }:
+        inputs.nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs =
+            {
+              inherit inputs hostname username;
+            }
+            // specialArgs;
+          modules =
+            [
+              flake.cachix
+              inputs.stylix.nixosModules.stylix
+              flake.modules.nixos.common
+            ]
+            ++ modules
+            ++ [
+              inputs.home-manager.nixosModules.home-manager
+              {
+                nix.settings.substituters = ["https://attic.xuyh0120.win/lantian"];
+                nix.settings.trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
 
-            home-manager = {
-              useUserPackages = true;
-              backupFileExtension = "backup";
+                home-manager = {
+                  useUserPackages = true;
+                  backupFileExtension = "backup";
+                  users.${username} = flake.modules.homeManager.${homeProfile};
+                  extraSpecialArgs = {
+                    inherit inputs username;
+                  };
+                };
+              }
+              inputs.determinate.nixosModules.default
+            ];
+        };
 
-              users.${username} = import userhome;
-
-              extraSpecialArgs = {inherit inputs outputs username;};
-            };
-          }
-          inputs.determinate.nixosModules.default
-        ];
-      };
-
-    mkSystems =
-      mapListToAttrs
-      (system: {
-        name = system.hostname;
-        value = mkSystem system;
-      });
+      mkHomeConfiguration = {
+        profile,
+        system,
+        modules ? [],
+        extraSpecialArgs ? {},
+      }:
+        inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages.${system};
+          extraSpecialArgs =
+            {
+              inherit inputs;
+            }
+            // extraSpecialArgs;
+          modules =
+            [
+              inputs.stylix.homeModules.stylix
+              flake.modules.homeManager.${profile}
+            ]
+            ++ modules;
+        };
+    };
   };
 }

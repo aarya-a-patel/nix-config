@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.network-services = {...}: {
+  config.flake.modules.nixos.network-services = {...}: {
     services.fail2ban.enable = true;
     services.openssh = {
       enable = true;

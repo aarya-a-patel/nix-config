@@ -1,9 +1,9 @@
 {config, ...}: let
-  top = config.repo;
+  flake = config.flake;
 in {
-  config.repo.nixosModules.cosmic = {pkgs, ...}: {
+  config.flake.modules.nixos.cosmic = {pkgs, ...}: {
     imports = [
-      top.nixosModules.xdg
+      flake.modules.nixos.xdg
     ];
 
     services.desktopManager.cosmic.enable = true;

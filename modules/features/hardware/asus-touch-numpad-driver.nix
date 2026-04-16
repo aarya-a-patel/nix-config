@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.asus-touch-numpad-driver = {pkgs, ...}: let
+  config.flake.modules.nixos.asus-touch-numpad-driver = {pkgs, ...}: let
     model = "m433ia";
   in {
     hardware.i2c.enable = true;

@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  config.repo.nixosModules.boot = {
+  config.flake.modules.nixos.boot = {
     config,
     lib,
     pkgs,

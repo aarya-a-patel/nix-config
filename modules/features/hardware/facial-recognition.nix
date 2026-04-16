@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.facial-recognition = {...}: {
+  config.flake.modules.nixos.facial-recognition = {...}: {
     services.howdy = {
       enable = true;
       control = "sufficient";

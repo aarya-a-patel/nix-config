@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.neovim = {...}: {
+  config.flake.modules.nixos.neovim = {...}: {
     programs.neovim = {
       enable = true;
       defaultEditor = true;

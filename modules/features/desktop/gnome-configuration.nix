@@ -1,9 +1,9 @@
 {config, ...}: let
-  top = config.repo;
+  flake = config.flake;
 in {
-  config.repo.nixosModules.gnome = {pkgs, ...}: {
+  config.flake.modules.nixos.gnome = {pkgs, ...}: {
     imports = [
-      top.nixosModules.xdg
+      flake.modules.nixos.xdg
     ];
 
     services.desktopManager.gnome.enable = true;

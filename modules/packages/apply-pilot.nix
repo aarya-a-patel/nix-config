@@ -93,5 +93,7 @@
         }
     ) {};
 in {
-  config.repo.packageBuilders.apply-pilot = package;
+  config.perSystem = {pkgs, ...}: {
+    packages.apply-pilot = package pkgs;
+  };
 }

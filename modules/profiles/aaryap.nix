@@ -3,23 +3,22 @@
   inputs,
   ...
 }: let
-  top = config.repo;
+  flake = config.flake;
 in {
-  config.repo.homeProfiles.aaryap = {pkgs, ...}: {
+  config.flake.modules.homeManager.aaryap = {pkgs, ...}: let
+    packages = flake.packages.${pkgs.stdenv.hostPlatform.system};
+  in {
     imports = [
-      top.homeManagerModules.shell
-      top.homeManagerModules.nvim
-      top.homeManagerModules.browsers
+      flake.modules.homeManager.shell
+      flake.modules.homeManager.nvim
+      flake.modules.homeManager.browsers
       inputs.zen-browser.homeModules.beta
       inputs.wallpaperengine.homeManagerModules.default
     ];
 
     nixpkgs = {
       overlays = [
-        top.overlays.additions
-        top.overlays.modifications
-        top.overlays.stable-packages
-        top.overlays.wrapper-programs
+        flake.overlays.stable-packages
         inputs.nur.overlays.default
       ];
       config.allowUnfree = true;
@@ -34,6 +33,7 @@ in {
 
     programs.wezterm = {
       enable = true;
+      package = packages.wezterm;
       enableZshIntegration = true;
       enableBashIntegration = true;
       extraConfig = builtins.readFile ../_assets/wezterm/wezterm.lua;
@@ -49,6 +49,7 @@ in {
 
     programs.kitty = {
       enable = true;
+      package = packages.kitty;
       enableGitIntegration = true;
       shellIntegration = {
         mode = "";
@@ -82,8 +83,8 @@ in {
       wike
       localsend
       drawio
-      mouseless-click
-      apply-pilot
+      packages.mouseless-click
+      packages.apply-pilot
     ];
 
     programs.vscode = {
@@ -100,7 +101,7 @@ in {
     manual.manpages.enable = false;
   };
 
-  config.repo.standaloneHomes."aaryap@nixos" = {
+  config.flake.homeConfigurations."aaryap@nixos" = flake.lib.mkHomeConfiguration {
     system = "x86_64-linux";
     profile = "aaryap";
   };

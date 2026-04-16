@@ -1,6 +1,7 @@
 {config, ...}: {
-  config.repo.homeManagerModules.hyprland = hyprland-target: {pkgs, ...}: let
+  config.flake.modules.homeManager.hyprland = {pkgs, ...}: let
     mod = "SUPER";
+    hyprland-target = "wayland-wm@hyprland.desktop.service";
 
     workspaceBinds = builtins.concatLists (builtins.genList (i: let
         n = toString (i + 1);

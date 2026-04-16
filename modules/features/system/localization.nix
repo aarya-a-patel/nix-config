@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.repo.nixosModules.localization = {...}: {
+  config.flake.modules.nixos.localization = {...}: {
     time = {
       hardwareClockInLocalTime = true;
       timeZone = "America/Indiana/Indianapolis";
