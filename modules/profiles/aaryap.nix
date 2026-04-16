@@ -36,7 +36,6 @@ in {
       package = packages.wezterm;
       enableZshIntegration = true;
       enableBashIntegration = true;
-      extraConfig = builtins.readFile ../_assets/wezterm/wezterm.lua;
     };
 
     programs.ghostty = {
@@ -55,10 +54,6 @@ in {
         mode = "";
         enableZshIntegration = true;
         enableBashIntegration = true;
-      };
-      settings = {
-        window_padding_width = 10;
-        touch_scroll_multipler = 10.0;
       };
     };
 

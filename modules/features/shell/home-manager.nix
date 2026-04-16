@@ -127,52 +127,6 @@ in {
       programs.helix = {
         enable = true;
         package = packages.helix;
-        settings = {
-          theme = lib.mkForce "gruvbox_transparent";
-          editor = {
-            line-number = "relative";
-            trim-trailing-whitespace = true;
-          };
-        };
-        languages = {
-          language-server = {
-            nixd.command = lib.getExe pkgs.nixd;
-            tinymist = {
-              command = lib.getExe pkgs.tinymist;
-              config = {
-                exportPdf = "onType";
-                preview.background = {
-                  enabled = true;
-                  args = [
-                    "--data-plane-host=127.0.0.1:0"
-                    "--invert-colors=never"
-                    "--open"
-                  ];
-                };
-              };
-            };
-          };
-          language = [
-            {
-              name = "nix";
-              auto-format = true;
-              formatter.command = lib.getExe pkgs.alejandra;
-              language-servers = ["nixd"];
-            }
-            {
-              name = "typst";
-              auto-format = true;
-              formatter = {
-                command = lib.getExe pkgs.typstyle;
-                args = ["--wrap-text"];
-              };
-            }
-          ];
-        };
-        themes.gruvbox_transparent = {
-          "inherits" = "gruvbox";
-          "ui.background" = {};
-        };
         extraPackages = with pkgs; [
           lua-language-server
           rust-analyzer
@@ -199,7 +153,6 @@ in {
       programs.btop = {
         enable = true;
         package = lib.mkDefault packages.btop;
-        settings.vim_mode = true;
       };
 
       home.packages = with pkgs; [
