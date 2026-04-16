@@ -10,12 +10,6 @@ in {
   config = {
     perSystem = {pkgs, ...}: {
       packages = {
-        wezterm = wrappers.wezterm.wrap {
-          inherit pkgs;
-          package = pkgs.wezterm;
-          "wezterm.lua".content = builtins.readFile ../../_assets/wezterm/wezterm.lua;
-        };
-
         kitty = wrappers.kitty.wrap {
           inherit pkgs;
           package = pkgs.kitty;

@@ -33,9 +33,10 @@ in {
 
     programs.wezterm = {
       enable = true;
-      package = packages.wezterm;
+      package = pkgs.wezterm;
       enableZshIntegration = true;
       enableBashIntegration = true;
+      extraConfig = builtins.readFile ../_assets/wezterm/wezterm.lua;
     };
 
     programs.ghostty = {
