@@ -45,7 +45,7 @@ in {
 
         services.ollama = {
           enable = true;
-          package = pkgs.stable.ollama;
+          package = pkgs.stable.ollama-vulkan;
         };
 
         system.stateVersion = "25.05";
