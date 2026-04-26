@@ -11,6 +11,7 @@
         X11Forwarding = true;
       };
     };
+    services.tailscale.enable = true;
     programs.mosh.enable = true;
   };
 }
