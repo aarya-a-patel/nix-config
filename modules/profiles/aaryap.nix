@@ -92,6 +92,7 @@ in {
     };
 
     programs.home-manager.enable = true;
+    services.tailscale-systray.enable = pkgs.stdenv.hostPlatform.isLinux;
     systemd.user.startServices = "sd-switch";
     home.stateVersion = "25.05";
     manual.manpages.enable = false;

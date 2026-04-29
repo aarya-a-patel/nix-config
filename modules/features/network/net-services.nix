@@ -1,5 +1,5 @@
 {config, ...}: {
-  config.flake.modules.nixos.network-services = {...}: {
+  config.flake.modules.nixos.network-services = {username ? "aaryap", ...}: {
     services.fail2ban.enable = true;
     services.openssh = {
       enable = true;
@@ -22,7 +22,10 @@
       openFirewall = true;
       # extraUpFlags only applies via tailscaled-autoconnect with authKeyFile;
       # manually enrolled nodes should persist SSH with extraSetFlags instead.
-      extraSetFlags = ["--ssh=true"];
+      extraSetFlags = [
+        "--ssh=true"
+        "--operator=${username}"
+      ];
     };
     programs.mosh.enable = true;
   };
