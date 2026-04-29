@@ -32,6 +32,12 @@ in {
 
         security.protectKernelImage = false;
         boot.resumeDevice = "/dev/disk/by-label/swap";
+        systemd.sleep.settings.Sleep = {
+          AllowSuspend = false;
+          AllowHibernation = false;
+          AllowHybridSleep = false;
+          AllowSuspendThenHibernate = false;
+        };
         swapDevices = [
           {
             device = "/dev/disk/by-label/swap";
