@@ -20,6 +20,7 @@ in {
           ])
           ++ [
             flake.modules.nixos.nvidia-gpu
+            flake.modules.nixos.binary-cache
             ../../machines/desktop/hardware-configuration.nix
           ];
 
