@@ -42,6 +42,8 @@ in {
       home.shellAliases = {
         ls = "eza";
         cd = "z";
+        zj = "zellij";
+        zjh = "zellij --layout helix";
       };
 
       programs.zsh = {
@@ -152,6 +154,48 @@ in {
           vscode-json-languageserver
           vscode-css-languageserver
         ];
+      };
+
+      programs.zellij = {
+        enable = true;
+        enableBashIntegration = false;
+        enableZshIntegration = false;
+        attachExistingSession = false;
+        exitShellOnExit = false;
+
+        settings = {
+          default_mode = "locked";
+          scrollback_editor = "hx";
+          pane_frames = true;
+          mouse_mode = true;
+          copy_clipboard = "system";
+          show_startup_tips = false;
+          web_server = false;
+          web_sharing = "disabled";
+        };
+
+        layouts.helix = ''
+          layout {
+              default_tab_template {
+                  pane size=1 borderless=true {
+                      plugin location="zellij:tab-bar"
+                  }
+                  children
+                  pane size=2 borderless=true {
+                      plugin location="zellij:status-bar"
+                  }
+              }
+
+              tab name="helix" focus=true {
+                  pane split_direction="vertical" {
+                      pane command="hx" size="70%" focus=true {
+                          args "."
+                      }
+                      pane name="shell"
+                  }
+              }
+          }
+        '';
       };
 
       programs.nix-index = {
