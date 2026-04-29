@@ -17,7 +17,13 @@
       howdy.enable = false;
       unixAuth = true;
     };
-    services.tailscale.enable = true;
+    services.tailscale = {
+      enable = true;
+      openFirewall = true;
+      # extraUpFlags only applies via tailscaled-autoconnect with authKeyFile;
+      # manually enrolled nodes should persist SSH with extraSetFlags instead.
+      extraSetFlags = ["--ssh=true"];
+    };
     programs.mosh.enable = true;
   };
 }
