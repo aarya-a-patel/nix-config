@@ -13,6 +13,11 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
+    zsh-helix-mode = {
+      url = "github:multirious/zsh-helix-mode/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # gaming and heavy workload optimization
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-gaming.inputs.nixpkgs.follows = "nixpkgs";

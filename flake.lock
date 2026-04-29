@@ -909,7 +909,8 @@
         "nur": "nur",
         "stylix": "stylix",
         "wallpaperengine": "wallpaperengine",
-        "zen-browser": "zen-browser"
+        "zen-browser": "zen-browser",
+        "zsh-helix-mode": "zsh-helix-mode"
       }
     },
     "rust-analyzer-src": {
@@ -1130,6 +1131,27 @@
       "original": {
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
+        "type": "github"
+      }
+    },
+    "zsh-helix-mode": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774203535,
+        "narHash": "sha256-YggmEZ5hRySwXR+VZFKKZ+HzH5Cvz0661QeiAjlE30E=",
+        "owner": "multirious",
+        "repo": "zsh-helix-mode",
+        "rev": "e8d4940588f9809ab5658aa7c9c664921d547879",
+        "type": "github"
+      },
+      "original": {
+        "owner": "multirious",
+        "ref": "main",
+        "repo": "zsh-helix-mode",
         "type": "github"
       }
     }

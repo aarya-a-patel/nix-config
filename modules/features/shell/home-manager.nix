@@ -54,7 +54,23 @@ in {
           ignoreAllDups = true;
         };
         syntaxHighlighting.enable = true;
-        defaultKeymap = "viins";
+        initContent = lib.mkOrder 550 ''
+          ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(
+            zhm_history_prev
+            zhm_history_next
+            zhm_prompt_accept
+            zhm_accept
+            zhm_accept_or_insert_newline
+          )
+          ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(
+            zhm_move_right
+            zhm_clear_selection_move_right
+          )
+          ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(
+            zhm_move_next_word_start
+            zhm_move_next_word_end
+          )
+        '';
         autosuggestion = {
           enable = true;
           strategy = [
@@ -64,9 +80,9 @@ in {
         };
         plugins = [
           {
-            name = "vi-mode";
-            src = pkgs.zsh-vi-mode;
-            file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+            name = "zsh-helix-mode";
+            src = inputs.zsh-helix-mode.packages.${pkgs.stdenv.hostPlatform.system}.zsh-helix-mode;
+            file = "share/zsh-helix-mode/zsh-helix-mode.plugin.zsh";
           }
         ];
       };
