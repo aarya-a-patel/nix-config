@@ -13,6 +13,7 @@
       indie-wiki-buddy
     ];
   in {
+    programs.chromium.enable = true;
     programs.firefox = {
       enable = true;
       profiles.default.extensions.packages = firefox-extensions;
