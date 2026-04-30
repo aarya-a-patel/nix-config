@@ -33,6 +33,11 @@ in {
 
         security.protectKernelImage = false;
         boot.resumeDevice = "/dev/disk/by-label/swap";
+        fileSystems."/mnt/data-two" = {
+          device = "/dev/disk/by-uuid/EE78A7EF78A7B4AD";
+          fsType = "ntfs3";
+          options = ["rw" "nofail" "uid=1000" "gid=100" "umask=022" "x-systemd.device-timeout=10s"];
+        };
         systemd.sleep.settings.Sleep = {
           AllowSuspend = false;
           AllowHibernation = false;
