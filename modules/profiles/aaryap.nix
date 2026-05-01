@@ -5,7 +5,11 @@
 }: let
   flake = config.flake;
 in {
-  config.flake.modules.homeManager.aaryap = {pkgs, ...}: let
+  config.flake.modules.homeManager.aaryap = {
+    config,
+    pkgs,
+    ...
+  }: let
     packages = flake.packages.${pkgs.stdenv.hostPlatform.system};
   in {
     imports = [
@@ -29,6 +33,8 @@ in {
       username = "aaryap";
       homeDirectory = "/home/aaryap";
     };
+
+    gtk.gtk4.theme = config.gtk.theme;
 
     programs.simple-wallpaper-engine.enable = true;
 
