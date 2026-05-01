@@ -29,6 +29,8 @@ in {
       homeDirectory = "/home/aaryap";
     };
 
+    stylix.targets.gtk.enable = false;
+
     programs.simple-wallpaper-engine.enable = true;
 
     programs.wezterm = {
