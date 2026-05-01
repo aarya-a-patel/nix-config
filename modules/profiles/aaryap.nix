@@ -12,6 +12,7 @@ in {
       flake.modules.homeManager.shell
       flake.modules.homeManager.nvim
       flake.modules.homeManager.browsers
+      flake.modules.homeManager.cosmic
       inputs.zen-browser.homeModules.beta
       inputs.wallpaperengine.homeManagerModules.default
     ];
@@ -28,8 +29,6 @@ in {
       username = "aaryap";
       homeDirectory = "/home/aaryap";
     };
-
-    stylix.targets.gtk.enable = false;
 
     programs.simple-wallpaper-engine.enable = true;
 
