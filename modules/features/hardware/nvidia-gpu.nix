@@ -17,6 +17,7 @@ in {
 
     flake.modules.nixos.nvidia-gpu = {
       config,
+      lib,
       pkgs,
       ...
     }: let
@@ -32,6 +33,7 @@ in {
 
       hardware.graphics.enable = true;
       boot.kernelParams = ["nvidia.NVreg_UsePageAttributeTable=1"];
+      aaryap.steamosOptimizations.gameModeSession = lib.mkForce false;
 
       systemd.services."systemd-suspend".serviceConfig.Environment = ''"SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"'';
 

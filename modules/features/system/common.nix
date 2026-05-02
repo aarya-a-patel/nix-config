@@ -30,6 +30,7 @@ in {
         localization
       ])
       ++ [
+        flake.modules.nixos.steamos-optimizations
         inputs.nix-gaming.nixosModules.platformOptimizations
       ];
 
