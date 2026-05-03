@@ -92,10 +92,21 @@ in {
 
     programs.vscode = {
       enable = true;
-      profiles.default.extensions = with pkgs.vscode-extensions; [
-        rocq-prover.vsrocq
-        asvetliakov.vscode-neovim
-      ];
+      profiles.default = {
+        extensions = with pkgs.vscode-extensions; [
+          rocq-prover.vsrocq
+          (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+            name = "vscode-helix-emulation";
+            publisher = "jasew";
+            version = "0.7.0";
+            sha256 = "sha256-gYyIVnXG9Atmik0c1FsRKO2idFnufwl26nOiH3DYPLY=";
+          })
+        ];
+        userSettings = {
+          "extensions.experimental.affinity"."jasew.vscode-helix-emulation" = 1;
+          "helixKeymap.toggleRelativeLineNumbers" = true;
+        };
+      };
     };
 
     programs.home-manager.enable = true;
