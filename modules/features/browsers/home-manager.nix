@@ -12,11 +12,48 @@
       one-click-wayback
       indie-wiki-buddy
     ];
+    chromium-extensions = [
+      {
+        # uBlock Origin
+        id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
+        hash = "sha256-FIbmYVj8cmXce7Vq4h7d2nOjmk4RkCnABmC4y5NDyGk=";
+      }
+      {
+        # Bitwarden
+        id = "nngceckbapebfimnlniiiahkandclblb";
+        hash = "sha256-XOVs2Tvay8hQ13SHz+728BDu2mMyQ0JxUuUI6FZ1NaM=";
+      }
+      {
+        # Dark Reader
+        id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
+        hash = "sha256-jAhpgyVucHif6fJ2VUJoOtPAcHUh7BdAEMr9JpdocBY=";
+      }
+      {
+        # OneTab
+        id = "chphlpgkkbolifaimnlloiipkdnihall";
+        hash = "sha256-LkQLIahNewg6u+1AM85s0Ln0XsPNdfyVgGS0YqTkPBc=";
+      }
+      {
+        # Indie Wiki Buddy
+        id = "fkagelmloambgokoeokbpihmgpkbgbfm";
+        hash = "sha256-VGrVknMv49rPxFlJhxf8w0+ESjItiP8wlCC9vp69Pow=";
+      }
+      {
+        # Internet Archive Wayback Machine, the Chromium equivalent of one-click-wayback.
+        id = "fpnmgdkabkmnadcjpehmlllkndpkmiak";
+        hash = "sha256-ImwsfOg+FHbRARXFMJoGej5M3uRbXThyZZDms98b798=";
+      }
+    ];
   in {
     programs.chromium.enable = true;
     programs.firefox = {
       enable = true;
       profiles.default.extensions.packages = firefox-extensions;
+    };
+    programs.helium = {
+      enable = true;
+      extensions = chromium-extensions;
+      preferences.helium.browser.layout = 1;
     };
     programs.zen-browser = {
       enable = true;

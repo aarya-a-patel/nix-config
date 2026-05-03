@@ -17,6 +17,7 @@ in {
       flake.modules.homeManager.nvim
       flake.modules.homeManager.browsers
       flake.modules.homeManager.cosmic
+      inputs.helium.homeModules.helium
       inputs.zen-browser.homeModules.beta
       inputs.wallpaperengine.homeManagerModules.default
     ];

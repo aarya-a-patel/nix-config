@@ -36,6 +36,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    helium = {
+      url = "gitlab:ntgn/helium-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     bacon-ls = {
       url = "github:crisidev/bacon-ls";
       inputs.nixpkgs.follows = "nixpkgs";

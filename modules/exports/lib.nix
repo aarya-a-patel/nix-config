@@ -31,6 +31,7 @@ in {
             [
               flake.cachix
               inputs.stylix.nixosModules.stylix
+              inputs.helium.nixosModules.helium
               flake.modules.nixos.common
             ]
             ++ modules
