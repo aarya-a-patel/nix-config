@@ -14,11 +14,6 @@
     ];
     chromium-extensions = [
       {
-        # uBlock Origin
-        id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-        hash = "sha256-FIbmYVj8cmXce7Vq4h7d2nOjmk4RkCnABmC4y5NDyGk=";
-      }
-      {
         # Bitwarden
         id = "nngceckbapebfimnlniiiahkandclblb";
         hash = "sha256-XOVs2Tvay8hQ13SHz+728BDu2mMyQ0JxUuUI6FZ1NaM=";
@@ -53,8 +48,9 @@
     programs.helium = {
       enable = true;
       extensions = chromium-extensions;
-      preferences.helium.browser.layout = 1;
+      preferences.helium.browser.layout = 2;
     };
+
     programs.zen-browser = {
       enable = true;
       profiles.default = {
