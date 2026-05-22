@@ -104,6 +104,7 @@
         browser = "zen-beta.desktop";
       in {
         "text/html" = browser;
+        "application/pdf" = "org.pwmt.zathura.desktop";
         "x-scheme-handler/http" = browser;
         "x-scheme-handler/https" = browser;
         "x-scheme-handler/about" = browser;
