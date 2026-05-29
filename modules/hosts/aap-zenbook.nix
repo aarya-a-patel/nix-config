@@ -28,10 +28,6 @@ in {
         networking.hostName = "aap-zenbook";
         nix.settings = {
           system-features = ["gccarch-znver2"];
-          extra-substituters = ["http://aap-nix-desktop:8080/aaryap?priority=30"];
-          extra-trusted-public-keys = [
-            "aaryap:lj6b7OrOj9+q8vTR4x6UHthstcaqYg37cVXBnZ4zRMA="
-          ];
         };
         aaryap.boot = {
           useCachyKernel = true;
