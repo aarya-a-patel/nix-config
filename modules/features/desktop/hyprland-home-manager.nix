@@ -42,7 +42,7 @@
       "${mod}, Q, killactive,"
       "${mod}, F, togglefloating,"
       "${mod}, P, pseudo,"
-      "${mod}, W, togglesplit,"
+      "${mod}, W, layoutmsg, togglesplit"
       "${mod}, U, togglespecialworkspace, magic"
       "${mod} SHIFT, U, movetoworkspace, special:magic"
       ", PRINT, exec, hyprshot -m output"
@@ -103,7 +103,6 @@
           ];
         };
         dwindle = {
-          pseudotile = "yes";
           preserve_split = "yes";
         };
         gesture = [
