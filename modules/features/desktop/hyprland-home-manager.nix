@@ -58,6 +58,7 @@
   in {
     wayland.windowManager.hyprland = {
       enable = true;
+      configType = "hyprlang";
       xwayland.enable = true;
       settings = {
         monitor = ",preferred,auto,1";

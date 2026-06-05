@@ -34,8 +34,6 @@ in {
       homeDirectory = "/home/aaryap";
     };
 
-    gtk.gtk4.theme = config.gtk.theme;
-
     programs.simple-wallpaper-engine.enable = true;
 
     programs.wezterm = {
@@ -73,6 +71,7 @@ in {
       texlab
       (prismlauncher.override {
         jdks = [
+          temurin-bin-25
           temurin-bin-21
           temurin-bin-8
           temurin-bin-17

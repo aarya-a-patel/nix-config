@@ -25,10 +25,10 @@ in {
           ];
 
         networking.hostName = "aap-nix-desktop";
-        nix.settings.system-features = ["gccarch-znver2"];
+        nix.settings.system-features = ["gccarch-znver5"];
         aaryap.boot = {
           useCachyKernel = true;
-          cachyKernelVariant = "linuxPackages-cachyos-lts-x86_64-v3";
+          cachyKernelVariant = "linuxPackages-cachyos-lts-x86_64-v4";
         };
 
         security.protectKernelImage = false;

@@ -16,6 +16,7 @@
     programs.chromium.enable = true;
     programs.firefox = {
       enable = true;
+      configPath = ".mozilla/firefox";
       profiles.default.extensions.packages = firefox-extensions;
     };
     programs.zen-browser = {
