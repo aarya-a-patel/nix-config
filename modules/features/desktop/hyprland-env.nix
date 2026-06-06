@@ -1,12 +1,12 @@
 {config, ...}: let
   flake = config.flake;
 in {
-  config.flake.modules.nixos.hyprland-env = {pkgs, ...}: {
-    imports = [
-      flake.modules.nixos.xdg
-    ];
-
-    home-manager.users.aaryap = {
+  config.flake.modules.nixos.hyprland-env = {
+    pkgs,
+    username,
+    ...
+  }: {
+    home-manager.users.${username} = {
       imports = [
         flake.modules.homeManager.hyprland
       ];
@@ -48,9 +48,6 @@ in {
 
     xdg.portal = {
       config.hyprland.default = ["hyprland" "gtk"];
-      extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
-      ];
     };
   };
 }

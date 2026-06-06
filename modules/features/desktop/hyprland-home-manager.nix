@@ -116,6 +116,7 @@
             sensitivity = -0.5;
           }
         ];
+        exec-once = ["ashell"];
         bind = appBinds ++ workspaceBinds ++ movementBinds ++ resizeBinds ++ miscBinds;
         bindm = [
           "${mod}, mouse:272, movewindow"
@@ -177,8 +178,7 @@
     programs.ashell = {
       enable = true;
       systemd = {
-        enable = true;
-        target = hyprland-target;
+        enable = false;
       };
       settings = {
         appearance = {

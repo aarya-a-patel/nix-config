@@ -10,7 +10,11 @@ in {
     username = "aaryap";
     homeProfile = "aaryap";
     modules = [
-      ({pkgs, ...}: {
+      ({
+        lib,
+        pkgs,
+        ...
+      }: {
         imports =
           (with inputs.hardware.nixosModules; [
             common-cpu-amd
@@ -20,12 +24,20 @@ in {
             common-pc-laptop-ssd
           ])
           ++ [
+            flake.modules.nixos.cosmic
+            flake.modules.nixos.hyprland-env
             flake.modules.nixos.asus-touch-numpad-driver
             flake.modules.nixos.facial-recognition
             ../../machines/asus-zenbook/hardware-configuration.nix
           ];
 
         networking.hostName = "aap-zenbook";
+        xdg.portal.extraPortals = lib.mkForce (with pkgs; [
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-cosmic
+          xdg-desktop-portal-hyprland
+          gnome-keyring
+        ]);
         nix.settings = {
           system-features = ["gccarch-znver2"];
         };

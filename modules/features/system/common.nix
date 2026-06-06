@@ -18,8 +18,7 @@ in {
       (with flake.modules.nixos; [
         bluetooth
         dm
-        cosmic
-        hyprland-env
+        xdg
         shell
         neovim
         display

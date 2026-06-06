@@ -1,11 +1,11 @@
 {config, ...}: let
   flake = config.flake;
 in {
-  config.flake.modules.nixos.cosmic = {pkgs, ...}: {
-    imports = [
-      flake.modules.nixos.xdg
-    ];
-
+  config.flake.modules.nixos.cosmic = {
+    pkgs,
+    username,
+    ...
+  }: {
     services.desktopManager.cosmic.enable = true;
 
     xdg.portal = {
@@ -13,9 +13,6 @@ in {
         cosmic.default = ["cosmic" "gtk"];
         COSMIC.default = ["cosmic" "gtk"];
       };
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-cosmic
-      ];
     };
 
     environment.systemPackages = with pkgs; [
@@ -27,6 +24,9 @@ in {
 
     services.desktopManager.cosmic.showExcludedPkgsWarning = false;
     environment.cosmic.excludePackages = [pkgs.cosmic-osd];
+    home-manager.users.${username}.imports = [
+      flake.modules.homeManager.cosmic
+    ];
     home-manager.sharedModules = [
       ({...}: {
         services.polkit-gnome.enable = true;

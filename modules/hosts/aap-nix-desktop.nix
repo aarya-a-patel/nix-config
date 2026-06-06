@@ -10,7 +10,11 @@ in {
     username = "aaryap";
     homeProfile = "aaryap";
     modules = [
-      {
+      ({
+        lib,
+        pkgs,
+        ...
+      }: {
         imports =
           (with inputs.hardware.nixosModules; [
             common-cpu-amd
@@ -19,12 +23,20 @@ in {
             common-pc-ssd
           ])
           ++ [
+            flake.modules.nixos.cosmic
+            flake.modules.nixos.hyprland-env
             flake.modules.nixos.nvidia-gpu
             flake.modules.nixos.binary-cache
             ../../machines/desktop/hardware-configuration.nix
           ];
 
         networking.hostName = "aap-nix-desktop";
+        xdg.portal.extraPortals = lib.mkForce (with pkgs; [
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-cosmic
+          xdg-desktop-portal-hyprland
+          gnome-keyring
+        ]);
         nix.settings.system-features = ["gccarch-znver5"];
         aaryap.boot = {
           useCachyKernel = true;
@@ -52,7 +64,7 @@ in {
         ];
 
         system.stateVersion = "25.11";
-      }
+      })
     ];
   };
 }
