@@ -103,7 +103,7 @@ in {
 
       programs.git = {
         enable = true;
-        settings.user = {
+        settings.user = lib.mkDefault {
           email = "aarya.patel@gmail.com";
           name = "Aarya Patel";
         };
