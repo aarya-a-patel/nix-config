@@ -1,4 +1,4 @@
 {
-  asus-zenbook = import ./asus-zenbook;
-  desktop = import ./desktop;
+  asus-zenbook = import ../modules/hosts/aap-zenbook.nix;
+  desktop = import ../modules/hosts/aap-nix-desktop.nix;
 }

@@ -1,8 +1,0 @@
-# Custom packages, that can be defined similarly to ones from nixpkgs
-# You can build them using 'nix build .#example'
-pkgs: {
-  # my-package = pkgs.callPackage ./my-package { };
-  mouseless-click = pkgs.callPackage ./mouseless.nix {};
-  nydusPkgs = pkgs.callPackage ./nydus.nix {};
-  apply-pilot = pkgs.callPackage ./apply-pilot.nix {};
-}
