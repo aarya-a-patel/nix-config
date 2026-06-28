@@ -23,7 +23,6 @@ in {
     ];
 
     services.desktopManager.cosmic.showExcludedPkgsWarning = false;
-    environment.cosmic.excludePackages = [pkgs.cosmic-osd];
     home-manager.users.${username}.imports = [
       flake.modules.homeManager.cosmic
     ];
