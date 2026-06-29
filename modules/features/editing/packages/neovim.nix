@@ -86,6 +86,7 @@ in {
         texlivePackages.bibtex
         typst
         ripgrep
+      ] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         xdotool
         psmisc
       ];
