@@ -20,6 +20,7 @@ in {
         dm
         xdg
         shell
+        shell-extra
         neovim
         display
         networking

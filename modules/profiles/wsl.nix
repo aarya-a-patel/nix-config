@@ -4,6 +4,8 @@ in {
   config.flake.modules.homeManager.wsl = {pkgs, ...}: {
     imports = [
       flake.modules.homeManager.shell
+      flake.modules.homeManager.shell-extra
+      flake.modules.homeManager.shell-ai
       flake.modules.homeManager.nvim
     ];
 

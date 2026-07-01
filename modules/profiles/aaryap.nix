@@ -14,6 +14,8 @@ in {
   in {
     imports = [
       flake.modules.homeManager.shell
+      flake.modules.homeManager.shell-extra
+      flake.modules.homeManager.shell-ai
       flake.modules.homeManager.nvim
       flake.modules.homeManager.browsers
       inputs.zen-browser.homeModules.beta
@@ -86,7 +88,6 @@ in {
       drawio
       inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.helium
       packages.mouseless-click
-      packages.apply-pilot
     ];
 
     programs.vscode = {

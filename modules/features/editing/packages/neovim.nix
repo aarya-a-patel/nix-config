@@ -71,7 +71,7 @@ in {
         python3.nvim-host.enable = false;
         ruby.nvim-host.enable = false;
       };
-      extraPackages = with pkgs;
+      runtimePkgs = with pkgs;
         [
           lua-language-server
           rust-analyzer
