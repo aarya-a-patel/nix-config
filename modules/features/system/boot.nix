@@ -40,7 +40,6 @@
       nixpkgs.overlays = lib.optional cfg.useCachyKernel inputs.nix-cachyos-kernel.overlays.pinned;
 
       boot = {
-        bootspec.enable = true;
         loader.systemd-boot.enable = true;
         loader.efi.canTouchEfiVariables = true;
         plymouth = {

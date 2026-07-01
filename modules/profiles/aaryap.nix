@@ -64,7 +64,7 @@ in {
 
     home.packages = with pkgs; [
       vlc
-      stable.vesktop
+      vesktop
       zed-editor
       thunderbird
       texlab

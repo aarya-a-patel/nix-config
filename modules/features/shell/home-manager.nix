@@ -56,7 +56,7 @@ in {
           ignoreAllDups = true;
         };
         syntaxHighlighting.enable = true;
-        initContent = lib.mkOrder 550 ''
+        initContent = lib.mkOrder 1500 ''
           ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(
             zhm_history_prev
             zhm_history_next
@@ -72,6 +72,8 @@ in {
             zhm_move_next_word_start
             zhm_move_next_word_end
           )
+
+          bindkey -M hxins '^R' atuin-search
         '';
         autosuggestion = {
           enable = true;
