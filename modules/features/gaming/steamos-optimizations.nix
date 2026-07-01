@@ -209,6 +209,7 @@
 
         steam = {
           enable = true;
+          extest.enable = true;
           platformOptimizations.enable = true;
           gamescopeSession = {
             enable = cfg.gameModeSession;
