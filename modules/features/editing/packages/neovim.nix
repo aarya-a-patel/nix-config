@@ -71,25 +71,27 @@ in {
         python3.nvim-host.enable = false;
         ruby.nvim-host.enable = false;
       };
-      extraPackages = with pkgs; [
-        lua-language-server
-        rust-analyzer
-        nixd
-        tree-sitter
-        clang-tools
-        texlab
-        clang
-        inputs.bacon-ls.defaultPackage.${pkgs.stdenv.hostPlatform.system}
-        bacon
-        tectonic
-        biber
-        texlivePackages.bibtex
-        typst
-        ripgrep
-      ] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-        xdotool
-        psmisc
-      ];
+      extraPackages = with pkgs;
+        [
+          lua-language-server
+          rust-analyzer
+          nixd
+          tree-sitter
+          clang-tools
+          texlab
+          clang
+          inputs.bacon-ls.defaultPackage.${pkgs.stdenv.hostPlatform.system}
+          bacon
+          tectonic
+          biber
+          texlivePackages.bibtex
+          typst
+          ripgrep
+        ]
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+          xdotool
+          psmisc
+        ];
       specs = {
         srcery = pkgs.vimPlugins.srcery-vim;
 

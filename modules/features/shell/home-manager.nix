@@ -109,6 +109,7 @@ in {
           email = "aarya.patel@gmail.com";
           name = "Aarya Patel";
         };
+        settings.core.editor = lib.mkDefault (lib.getExe packages.helix);
       };
 
       programs.delta = {
