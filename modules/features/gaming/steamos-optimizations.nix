@@ -160,7 +160,7 @@
     };
   in {
     options.aaryap.steamosOptimizations = {
-      enable = lib.mkEnableOption "portable SteamOS-style gaming optimizations" // {default = true;};
+      enable = lib.mkEnableOption "portable SteamOS-style gaming optimizations";
 
       gameModeSession = lib.mkOption {
         type = lib.types.bool;
@@ -208,6 +208,7 @@
         };
 
         steam = {
+          enable = true;
           platformOptimizations.enable = true;
           gamescopeSession = {
             enable = cfg.gameModeSession;
@@ -252,8 +253,6 @@
 
       environment.systemPackages =
         [
-          pkgs.gamescope
-          pkgs.gamemode
           pkgs.mangohud
           pkgs.vulkan-tools
           pkgs.mesa-demos

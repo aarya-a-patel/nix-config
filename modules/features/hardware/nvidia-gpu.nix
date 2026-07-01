@@ -46,11 +46,6 @@ in {
         package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
 
-      services.ollama = {
-        enable = true;
-        package = pkgs.stable.ollama-cuda;
-      };
-
       environment.systemPackages = [pkgs.opencode];
     };
   };

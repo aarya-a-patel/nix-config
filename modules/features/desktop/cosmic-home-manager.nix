@@ -59,8 +59,6 @@ in {
     };
 
     home.packages = with pkgs; [
-      inter
-      nerd-fonts.fira-code
       papirus-icon-theme
     ];
   };

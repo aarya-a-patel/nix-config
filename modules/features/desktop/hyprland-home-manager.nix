@@ -168,7 +168,6 @@
     home.packages = with pkgs; [
       wl-clipboard-rs
       cliphist
-      brightnessctl
       wireplumber
       hyprshot
     ];

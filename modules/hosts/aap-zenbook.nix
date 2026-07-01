@@ -36,7 +36,6 @@ in {
           xdg-desktop-portal-gtk
           xdg-desktop-portal-cosmic
           xdg-desktop-portal-hyprland
-          gnome-keyring
         ]);
         nix.settings = {
           system-features = ["gccarch-znver2"];
@@ -45,6 +44,10 @@ in {
           useCachyKernel = true;
           cachyKernelVariant = "linuxPackages-cachyos-lts-x86_64-v3";
         };
+        aaryap.workloads = {
+          podman = true;
+        };
+        aaryap.steamosOptimizations.enable = true;
 
         programs.nh.flake = "/etc/nixos";
         services.xserver.videoDrivers = ["amdgpu"];
@@ -56,11 +59,6 @@ in {
             priority = 1;
           }
         ];
-
-        services.ollama = {
-          enable = true;
-          package = pkgs.stable.ollama-vulkan;
-        };
 
         system.stateVersion = "25.05";
       })

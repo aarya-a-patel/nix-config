@@ -61,6 +61,8 @@ in {
 
       nixos.shell-cli = {pkgs, ...}: {
         environment.systemPackages = with pkgs; [
+          jq
+          lsof
           wget
           unzip
         ];

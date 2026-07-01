@@ -69,7 +69,6 @@ in {
       vesktop
       zed-editor
       thunderbird
-      texlab
       (prismlauncher.override {
         jdks = [
           temurin-bin-25
@@ -79,7 +78,6 @@ in {
         ];
       })
       input-leap
-      papirus-icon-theme
       sshfs
       gnome-network-displays
       libreoffice-qt

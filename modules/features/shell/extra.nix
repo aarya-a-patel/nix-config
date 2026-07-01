@@ -18,17 +18,11 @@
       ];
     };
 
-    nixos.shell-extra = {pkgs, ...}: {
+    nixos.shell-extra = {...}: {
       environment.etc."ncdu.conf" = {
         source = ../../_assets/ncdu.conf;
         mode = "0444";
       };
-
-      environment.systemPackages = with pkgs; [
-        autossh
-        nix-fast-build
-        nix-tree
-      ];
     };
   };
 }

@@ -35,13 +35,16 @@ in {
           xdg-desktop-portal-gtk
           xdg-desktop-portal-cosmic
           xdg-desktop-portal-hyprland
-          gnome-keyring
         ]);
         nix.settings.system-features = ["gccarch-znver5"];
         aaryap.boot = {
           useCachyKernel = true;
           cachyKernelVariant = "linuxPackages-cachyos-lts-x86_64-v4";
         };
+        aaryap.workloads = {
+          podman = true;
+        };
+        aaryap.steamosOptimizations.enable = true;
 
         security.protectKernelImage = false;
         boot.resumeDevice = "/dev/disk/by-label/swap";

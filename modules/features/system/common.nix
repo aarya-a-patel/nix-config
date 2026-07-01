@@ -11,9 +11,7 @@ in {
     lib,
     pkgs,
     ...
-  }: let
-    packages = flake.packages.${pkgs.stdenv.hostPlatform.system};
-  in {
+  }: {
     imports =
       (with flake.modules.nixos; [
         bluetooth
@@ -30,6 +28,7 @@ in {
         localization
       ])
       ++ [
+        flake.modules.nixos.workloads
         flake.modules.nixos.steamos-optimizations
         inputs.nix-gaming.nixosModules.platformOptimizations
       ];
@@ -84,35 +83,14 @@ in {
       nerd-fonts.droid-sans-mono
     ];
 
-    programs.steam = {
-      enable = true;
-      platformOptimizations.enable = true;
-    };
-
-    hardware.system76.enableAll = true;
-    hardware.system76.power-daemon.enable = lib.mkForce false;
     services.power-profiles-daemon.enable = lib.mkForce true;
 
     security.polkit.enable = true;
-
-    virtualisation.podman = {
-      enable = true;
-      dockerCompat = true;
-    };
-    virtualisation.containers.registries.search = ["docker.io"];
-    virtualisation.containerd.enable = true;
-    virtualisation.waydroid = {
-      enable = true;
-      package = pkgs.waydroid-nftables;
-    };
 
     environment.systemPackages = with pkgs; [
       gcc
       cachix
       gparted
-      nerdctl
-      podman-compose
-      packages.nydus-bundle
       mission-center
       firmware-updater
       usbutils
@@ -122,15 +100,6 @@ in {
 
     services.earlyoom.enable = true;
     zramSwap.enable = true;
-
-    virtualisation.libvirtd = {
-      enable = true;
-      qemu = {
-        package = pkgs.qemu_kvm;
-        swtpm.enable = true;
-      };
-    };
-    programs.virt-manager.enable = true;
 
     programs.nix-ld.enable = true;
     programs.gnupg.agent = {
