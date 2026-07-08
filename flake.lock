@@ -593,6 +593,26 @@
         "type": "github"
       }
     },
+    "herdr": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783468284,
+        "narHash": "sha256-no8aODMs+tYEnEShJPHKap2imToiA++joPFL+o/ZAmg=",
+        "owner": "ogulcancelik",
+        "repo": "herdr",
+        "rev": "77f0339c3cd387c4ca3f4f240ff8b88065d66a22",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ogulcancelik",
+        "repo": "herdr",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -985,6 +1005,7 @@
         "flake-parts": "flake-parts_3",
         "hardware": "hardware",
         "helium": "helium",
+        "herdr": "herdr",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
