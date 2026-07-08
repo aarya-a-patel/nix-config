@@ -2,18 +2,19 @@
   config,
   inputs,
   ...
-}: let
-  wrappers = inputs.nix-wrapper-modules.wrappers;
-in {
+}: {
   config = {
-    perSystem = {pkgs, ...}: {
-      packages.kitty = wrappers.kitty.wrap {
-        inherit pkgs;
-        package = pkgs.kitty;
-        settings = {
-          window_padding_width = 10;
-          touch_scroll_multipler = 10.0;
-        };
+    flake.wrappers.kitty = {
+      lib,
+      pkgs,
+      ...
+    }: {
+      imports = [inputs.nix-wrapper-modules.wrapperModules.kitty];
+
+      package = lib.mkOverride 900 pkgs.kitty;
+      settings = lib.mkDefault {
+        window_padding_width = 10;
+        touch_scroll_multipler = 10.0;
       };
     };
 

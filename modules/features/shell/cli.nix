@@ -4,15 +4,17 @@
   ...
 }: let
   flake = config.flake;
-  wrappers = inputs.nix-wrapper-modules.wrappers;
 in {
   config = {
-    perSystem = {pkgs, ...}: {
-      packages.btop = wrappers.btop.wrap {
-        inherit pkgs;
-        package = pkgs.btop;
-        settings.vim_mode = true;
-      };
+    flake.wrappers.btop = {
+      lib,
+      pkgs,
+      ...
+    }: {
+      imports = [inputs.nix-wrapper-modules.wrapperModules.btop];
+
+      package = lib.mkOverride 900 pkgs.btop;
+      settings.vim_mode = lib.mkDefault true;
     };
 
     flake.modules = {

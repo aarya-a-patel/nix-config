@@ -89,6 +89,7 @@
       imports = [
         inputs.flake-parts.flakeModules.modules
         inputs.home-manager.flakeModules.home-manager
+        inputs.nix-wrapper-modules.flakeModules.wrappers
         (inputs.import-tree ./modules)
       ];
     };
