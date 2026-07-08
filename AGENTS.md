@@ -3,6 +3,8 @@
 ## Project Structure & Module Organization
 This repository is a flake-based NixOS and Home Manager configuration. `flake.nix` wires the repo together and imports `modules/`. Host definitions live in `modules/hosts/` and hardware-specific files live under `machines/`. Reusable system and user modules are grouped in `modules/features/` by area such as `desktop/`, `network/`, `shell/`, and `system/`. Home profiles live in `modules/profiles/`. Custom derivations are defined in `modules/packages/`. Static assets for tools like Neovim, Waybar, and WezTerm are kept in `modules/_assets/`.
 
+Agents extending this flake's wrapped packages from another flake should read `docs/wrapper-extensibility.md` before changing downstream wrapper modules.
+
 ## Build, Test, and Development Commands
 Use the flake entry points directly:
 
