@@ -33,6 +33,10 @@ in {
     home = {
       username = "aaryap";
       homeDirectory = "/home/aaryap";
+      sessionVariables = {
+        SDL_GAMECONTROLLER_IGNORE_DEVICES = "0x04d8/0xeed3";
+        SDL_HIDAPI_IGNORE_DEVICES = "0x04d8/0xeed3";
+      };
     };
 
     programs.simple-wallpaper-engine.enable = true;

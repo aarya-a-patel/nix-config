@@ -134,12 +134,12 @@ in {
       initialPassword = "";
       isNormalUser = true;
       description = "Aarya Patel";
-      extraGroups = ["wheel" "docker" "dialout" "libvirtd"];
+      extraGroups = ["wheel" "docker" "dialout" "libvirtd" "input"];
     };
 
     services.udev.extraRules = ''
-      KERNEL=="uinput", GROUP="aaryap", MODE:="0660"
-      KERNEL=="event*", GROUP="aaryap", NAME="input/%k", MODE:="0660"
+      KERNEL=="uinput", GROUP="input", MODE:="0660"
+      KERNEL=="event*", GROUP="input", NAME="input/%k", MODE:="0660"
     '';
 
     programs.appimage = {
