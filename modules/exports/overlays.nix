@@ -6,13 +6,5 @@
         config.allowUnfree = true;
       };
     };
-
-    flake.overlays.cosmic-no-pop-gtk-theme = final: prev: {
-      cosmic-settings-daemon = prev.cosmic-settings-daemon.override {
-        pop-gtk-theme = final.runCommand "cosmic-pop-sounds-placeholder" {} ''
-          mkdir -p "$out/share/sounds/Pop"
-        '';
-      };
-    };
   };
 }

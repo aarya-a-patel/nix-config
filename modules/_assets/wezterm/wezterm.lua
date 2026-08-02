@@ -15,6 +15,9 @@ local config = wezterm.config_builder()
 config.hide_tab_bar_if_only_one_tab = true
 config.hide_mouse_cursor_when_typing = false
 
+config.window_background_opacity = 0.8
+config.wayland_window_background_blur = true
+
 -- Title bar
 config.window_decorations = "NONE"
 
@@ -40,4 +43,3 @@ config.ssh_domains = {
 
 -- and finally, return the configuration to wezterm
 return config
-

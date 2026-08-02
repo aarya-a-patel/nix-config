@@ -35,7 +35,6 @@ in {
 
     nixpkgs = {
       overlays = [
-        flake.overlays.cosmic-no-pop-gtk-theme
         flake.overlays.stable-packages
       ];
       config.allowUnfree = true;
