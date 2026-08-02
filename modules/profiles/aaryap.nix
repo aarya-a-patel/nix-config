@@ -19,7 +19,6 @@ in {
       flake.modules.homeManager.nvim
       flake.modules.homeManager.browsers
       inputs.zen-browser.homeModules.beta
-      inputs.wallpaperengine.homeManagerModules.default
     ];
 
     nixpkgs = {
@@ -38,8 +37,6 @@ in {
         SDL_HIDAPI_IGNORE_DEVICES = "0x04d8/0xeed3";
       };
     };
-
-    programs.simple-wallpaper-engine.enable = true;
 
     programs.wezterm = {
       enable = true;
@@ -90,7 +87,17 @@ in {
       drawio
       inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.helium
       packages.mouseless-click
+      packages.waywallen
     ];
+
+    xdg.configFile."autostart/org.waywallen.waywallen.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=Waywallen
+      Exec=waywallen
+      Terminal=false
+      X-GNOME-Autostart-enabled=true
+    '';
 
     programs.vscode = {
       enable = true;
