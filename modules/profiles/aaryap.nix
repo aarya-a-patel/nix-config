@@ -7,6 +7,7 @@
 in {
   config.flake.modules.homeManager.aaryap = {
     config,
+    lib,
     pkgs,
     ...
   }: let
@@ -63,6 +64,20 @@ in {
         enableZshIntegration = true;
         enableBashIntegration = true;
       };
+    };
+
+    programs.zen-browser.unwrappedPackage = packages.zen-stable.override {
+      inherit (config.programs.zen-browser) policies enablePrivateDesktopEntry;
+    };
+
+    xdg.mimeApps.defaultApplications = let
+      browser = "zen-stable.desktop";
+    in {
+      "text/html" = lib.mkForce browser;
+      "x-scheme-handler/http" = lib.mkForce browser;
+      "x-scheme-handler/https" = lib.mkForce browser;
+      "x-scheme-handler/about" = lib.mkForce browser;
+      "x-scheme-handler/unknown" = lib.mkForce browser;
     };
 
     home.packages = with pkgs; [
