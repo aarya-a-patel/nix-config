@@ -47,6 +47,8 @@ in {
         aaryap.steamosOptimizations.enable = true;
 
         security.protectKernelImage = false;
+        # Work around AMD-Vi NVMe IO_PAGE_FAULT boot instability while keeping IOMMU available.
+        boot.kernelParams = ["iommu=pt"];
         boot.resumeDevice = "/dev/disk/by-label/swap";
         fileSystems."/mnt/data-two" = {
           device = "/dev/disk/by-uuid/EE78A7EF78A7B4AD";
